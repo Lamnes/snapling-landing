@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand */
+  --color-lime: #cbfb60;
+  --color-lime-dim: #b6e653;
+  --color-ink: #0a0b0a; /* page background */
+  --color-panel: #161616; /* cards */
+  --color-panel-2: #1c1c1c;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.14);
+  --color-muted: #a6a6a0;
+  --color-faint: #8a8a85;
+
+  /* Fonts (bound to next/font CSS variables in layout.tsx) */
+  --font-display: var(--font-bricolage), "Geist", system-ui, sans-serif;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: #f4f4f1;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Uppercase mono eyebrow labels */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-lime);
+}
+
+/* Subtle grid texture band between sections */
+.grid-band {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Faint lime radial glow */
+.glow {
+  background: radial-gradient(60% 60% at 50% 0%, rgba(203, 251, 96, 0.08), transparent 70%);
+}
+
+/* Display headline helper */
+.h-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.03;
+}
