@@ -84,7 +84,7 @@ function Hero() {
               right={<GameUI lang="ja" />}
             />
           </Frame>
-          <VoiceSample from="EN — original voice" to="JA — localized voice" />
+          <VoiceSample />
         </div>
       </div>
     </section>
