@@ -47,7 +47,10 @@ export function GameUI({ lang }: { lang: Lang }) {
   const t = GAME[lang];
   return (
     <div
-      className="relative flex h-[380px] flex-col justify-between overflow-hidden p-6 text-white"
+      // pt-12 reserves the strip where BeforeAfter overlays its EN/JA labels —
+      // otherwise the badge lands on the game title. (Overlap is literally a
+      // defect we sell detection for; don't ship one.)
+      className="relative flex h-[380px] flex-col justify-between overflow-hidden px-6 pb-6 pt-12 text-white"
       style={{ background: "radial-gradient(120% 90% at 30% 0%, #24304a 0%, #12101f 55%, #0b0910 100%)" }}
     >
       {/* Title (game name — preserved in both languages) */}
@@ -176,7 +179,9 @@ export function StoreCreative({ lang }: { lang: Lang }) {
   const t = STORE[lang];
   return (
     <div
-      className="relative h-64 w-full overflow-hidden p-6 text-white"
+      // pt-12: same reason as GameUI — clear the BeforeAfter label strip so the
+      // store badge and the "JA — REDRAWN" label don't collide.
+      className="relative h-64 w-full overflow-hidden px-6 pb-6 pt-12 text-white"
       style={{ background: "linear-gradient(135deg, #2a2140 0%, #171029 50%, #0d0b12 100%)" }}
     >
       <div className="flex items-center justify-between">
