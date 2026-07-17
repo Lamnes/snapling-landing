@@ -163,7 +163,11 @@ const STORE = {
   en: {
     headline: "EPIC QUESTS AWAIT",
     sub: "Battle. Explore. Conquer.",
-    badge: "NOW FREE",
+    // Keep this roughly as wide as the JA badge (無料). The badge sits at the far
+    // right, exactly where the compare slider ends up when dragged to the end —
+    // if the two languages render different widths, the wider one pokes out past
+    // the seam and the two lime pills merge into one garbled "NOW 無料".
+    badge: "FREE",
     cta: "DOWNLOAD",
   },
   ja: {
@@ -188,7 +192,12 @@ export function StoreCreative({ lang }: { lang: Lang }) {
         <div className="flex items-center gap-2 text-sm font-semibold">
           <span className="text-lime">◆</span> SHADOW REALM
         </div>
-        <span className="rounded-md bg-lime px-2 py-0.5 text-[11px] font-bold text-black" style={langStyle(lang)}>
+        {/* Fixed box so EN and JA render the same pill: the compare seam must cut
+            one badge, not reveal a wider one underneath a narrower one. */}
+        <span
+          className="inline-block min-w-[52px] rounded-md bg-lime px-2 py-0.5 text-center text-[11px] font-bold text-black"
+          style={langStyle(lang)}
+        >
           {t.badge}
         </span>
       </div>
