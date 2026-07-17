@@ -1,3 +1,5 @@
+import { CTA } from "@/lib/seo";
+
 const NAV = [
   { label: "Product", href: "#modules" },
   { label: "Quality", href: "#context" },
@@ -32,7 +34,7 @@ export default function Header() {
           href="#contact"
           className="rounded-lg bg-lime px-4 py-2 text-sm font-semibold text-black transition hover:bg-lime-dim"
         >
-          Request a demo
+          {CTA}
         </a>
       </div>
     </header>

@@ -34,7 +34,10 @@ const GAME = {
   },
   ja: {
     speaker: "長老",
-    line: "旅人よ、運命を選べ。",
+    // Must stay identical to the voice sample + the generated audio clip
+    // (public/audio/elder-ja.mp3) — this is Snapling's actual output for the EN
+    // line. One string, one translation: the product's own promise.
+    line: "旅人よ、汝の運命を選べ。",
     menu: ["プレイ", "つづきから", "設定", "終了"],
   },
 } as const;

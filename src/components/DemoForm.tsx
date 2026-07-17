@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { CTA } from "@/lib/seo";
 
 /**
- * Lead-capture form for the final CTA. No backend on the marketing site — on
- * submit it opens a prefilled email to hello@snapling.io and shows a thanks
+ * Pilot application form for the final CTA. No backend on the marketing site —
+ * on submit it opens a prefilled email to hello@snapling.io and shows a thanks
  * state. Swap the handler for a real endpoint when one exists.
  */
 export default function DemoForm() {
@@ -16,10 +17,10 @@ export default function DemoForm() {
     e.preventDefault();
     if (!email.trim()) return;
     const body = encodeURIComponent(
-      `Email: ${email}\n\n${note || "I'd like to see my game localized live. I can share a build / assets."}`
+      `Email: ${email}\n\n${note || "I'd like to apply for the closed pilot. I can share a build / assets."}`
     );
     window.location.href = `mailto:hello@snapling.io?subject=${encodeURIComponent(
-      "Snapling — game localization demo"
+      "Snapling — pilot application"
     )}&body=${body}`;
     setSent(true);
   };
@@ -54,7 +55,7 @@ export default function DemoForm() {
           type="submit"
           className="rounded-lg bg-lime px-5 py-3 font-semibold text-black transition hover:bg-lime-dim"
         >
-          Get access →
+          {CTA} →
         </button>
       </div>
       <input
@@ -64,7 +65,8 @@ export default function DemoForm() {
         className="mt-3 w-full rounded-lg border border-line bg-white/[0.02] px-4 py-3 text-sm text-white placeholder:text-faint outline-none focus:border-lime"
       />
       <p className="mt-3 text-center text-xs text-faint">
-        Send us a build or a few assets — we&apos;ll show it localized live.
+        Send a build or a few assets — we&apos;ll localize a slice of it with you and hand back the
+        LQA report.
       </p>
     </form>
   );

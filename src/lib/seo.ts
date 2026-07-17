@@ -2,13 +2,17 @@
 export const siteUrl = "https://snapling.com";
 export const siteName = "Snapling";
 
+// One name for one action, everywhere on the page (header, hero, pricing, CTA,
+// footer). "Apply" reads as selection, not a sale — we're in closed pilot.
+export const CTA = "Apply for a pilot";
+
 export const title = "Snapling — AI Game Localization: Text, Voice & Creatives";
 export const description =
-  "Localize your game's UI, voiceover, and store creatives into any language in minutes — translated in context and checked for defects on every screen. Native SDKs for Unity, Unreal, Flutter. No dubbing studios needed.";
+  "Localization that sees your game: every string translated with a screenshot of where it appears, every localized screen checked for overflow, truncation and untranslated text. Text, voice and store creatives via native SDKs for Unity, Unreal and Flutter.";
 
-export const ogTitle = "Snapling — AI Game Localization";
+export const ogTitle = "Snapling — Localization that sees your game";
 export const ogDescription =
-  "Localize game UI, voiceover, and creatives into any language in minutes. Context-aware translation + automated LQA. Native SDKs for Unity, Unreal, Flutter.";
+  "Context-aware game translation + automated LQA. Every string translated with the screen it lives on, every localized screen verified. Native SDKs for Unity, Unreal, Flutter.";
 
 // FAQ — used both for the on-page section and the FAQPage JSON-LD.
 export const faqs: { q: string; a: string }[] = [
