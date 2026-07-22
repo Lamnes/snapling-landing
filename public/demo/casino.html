@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LuckySpin Casino — localized by Snapling</title>
+<style>
+  :root{
+    --bg:#0a0e1c; --bg2:#0f1428; --card:#141a33; --card2:#1a2142;
+    --gold:#f5c451; --gold-2:#e0a92e; --ink:#eaf0ff; --muted:#9aa6c8;
+    --line:rgba(255,255,255,.08); --mag:#ff3d8b; --cyan:#38e1ff; --green:#38e7a5;
+    --font:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---- Snapling demo chrome (the switcher bar) ---- */
+  .sn-bar{position:sticky;top:0;z-index:50;background:rgba(6,9,18,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .sn-bar-in{max-width:1180px;margin:0 auto;padding:9px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .sn-brand{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);white-space:nowrap}
+  .sn-dot{width:16px;height:16px;border-radius:5px;background:#cbfb60;color:#0a0b0a;font-weight:800;font-size:11px;display:grid;place-items:center;font-family:"Bricolage Grotesque",var(--font)}
+  .sn-brand b{color:var(--ink);font-weight:600}
+  .sn-langs{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+  .sn-lang{padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:12.5px;font-weight:600;letter-spacing:.03em;cursor:pointer;transition:.15s}
+  .sn-lang:hover{color:var(--ink);border-color:rgba(255,255,255,.22)}
+  .sn-lang.active{background:#cbfb60;color:#0a0b0a;border-color:#cbfb60}
+  .sn-lang .src{opacity:.6;font-weight:500}
+  .sn-note{font-size:11.5px;color:var(--muted);width:100%;display:flex;align-items:center;gap:8px;padding-top:2px}
+  .sn-note .sn-live{flex:none;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(56,231,165,.18)}
+  body.sn-video .sn-note{display:none}
+  [data-i18n]{transition:background-color .5s}
+  body.sn-flash [data-i18n]{background-color:rgba(203,251,96,.14)}
+
+  /* ---- casino header ---- */
+  header.site{padding:18px 0;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(20,26,51,.6),transparent)}
+  .site-in{display:flex;align-items:center;gap:26px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.02em}
+  .logo .chip{width:30px;height:30px;border-radius:8px;background:radial-gradient(circle at 30% 30%,var(--gold),var(--gold-2));color:#2a1c00;display:grid;place-items:center;font-size:17px}
+  .logo b{color:var(--gold)}
+  nav.main{display:flex;gap:22px;margin-left:8px}
+  nav.main a{font-size:14.5px;color:var(--muted);font-weight:600}
+  nav.main a:hover{color:var(--ink)}
+  .head-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font-weight:700;font-family:inherit;border-radius:10px;padding:11px 20px;font-size:14.5px;transition:.15s;white-space:nowrap}
+  .btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:rgba(255,255,255,.28)}
+  .btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold-2));color:#2a1c00;box-shadow:0 6px 20px rgba(245,196,81,.25)}
+  .btn-gold:hover{filter:brightness(1.06)}
+  .btn-mag{background:linear-gradient(180deg,var(--mag),#d21f6d);color:#fff;box-shadow:0 6px 20px rgba(255,61,139,.28)}
+  .btn-lg{padding:14px 26px;font-size:16px}
+
+  /* ---- hero ---- */
+  .hero{position:relative;overflow:hidden;padding:64px 0 54px}
+  .hero:before{content:"";position:absolute;inset:0;background:
+    radial-gradient(700px 320px at 78% 12%,rgba(255,61,139,.22),transparent 60%),
+    radial-gradient(600px 300px at 10% 90%,rgba(56,225,255,.14),transparent 60%);pointer-events:none}
+  .hero-in{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(245,196,81,.35);border-radius:999px;padding:6px 13px;margin-bottom:18px}
+  .hero h1{font-size:56px;line-height:1.02;letter-spacing:-.03em;font-weight:800;margin-bottom:16px;background:linear-gradient(180deg,#fff,#c8d2f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{font-size:18.5px;color:var(--muted);max-width:30em;margin-bottom:26px}
+  .hero .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-art{position:relative;aspect-ratio:4/3;border-radius:20px;border:1px solid var(--line);background:
+    radial-gradient(circle at 50% 38%,rgba(245,196,81,.16),transparent 55%),linear-gradient(160deg,var(--card2),var(--bg2));display:grid;place-items:center;overflow:hidden}
+  .reel{display:flex;gap:12px}
+  .reel span{width:78px;height:104px;border-radius:12px;background:linear-gradient(180deg,#20284c,#151b36);border:1px solid var(--line);display:grid;place-items:center;font-size:46px;box-shadow:inset 0 0 24px rgba(0,0,0,.4)}
+  .jack{position:absolute;top:16px;left:16px;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:rgba(0,0,0,.3)}
+  .jack b{color:var(--gold)}
+
+  /* ---- trust strip ---- */
+  .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .trust div{display:flex;align-items:center;gap:10px;font-size:14.5px;color:var(--ink);font-weight:600}
+  .trust .ic{width:26px;height:26px;border-radius:7px;background:var(--card2);display:grid;place-items:center;font-size:14px}
+
+  /* ---- sections ---- */
+  section{padding:52px 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px}
+  .sec-head h2{font-size:30px;letter-spacing:-.02em;font-weight:800}
+  .sec-head p{color:var(--muted);font-size:15px;margin-top:4px}
+  .grid-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .slot{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card);transition:.18s}
+  .slot:hover{transform:translateY(-3px);border-color:rgba(245,196,81,.4)}
+  .slot .thumb{aspect-ratio:16/10;display:grid;place-items:center;font-size:60px;position:relative;background:linear-gradient(160deg,var(--card2),#0d1226)}
+  .slot .thumb .jp{position:absolute;top:10px;right:10px;font-size:11px;font-weight:700;color:var(--gold);background:rgba(0,0,0,.42);border:1px solid rgba(245,196,81,.3);border-radius:999px;padding:4px 9px}
+  .slot .body{padding:13px 15px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .slot .name{font-weight:700;font-size:15.5px}
+  .slot .btn{padding:8px 16px;font-size:13.5px;border-radius:8px}
+
+  .live{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center;background:linear-gradient(120deg,var(--card),#10152b);border:1px solid var(--line);border-radius:20px;padding:34px}
+  .live h2{font-size:30px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+  .live p{color:var(--muted);font-size:16px;margin-bottom:20px}
+  .live-tables{display:flex;gap:12px;flex-wrap:wrap}
+  .table-chip{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg2);min-width:120px}
+  .table-chip .em{font-size:26px}
+  .table-chip .t{font-size:13.5px;color:var(--muted);margin-top:6px;font-weight:600}
+
+  .grid-promos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .promo{border:1px solid var(--line);border-radius:16px;padding:22px;background:linear-gradient(180deg,var(--card),var(--bg2));position:relative;overflow:hidden}
+  .promo:before{content:"";position:absolute;top:-40px;right:-40px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,61,139,.18),transparent 70%)}
+  .promo h3{font-size:19px;font-weight:800;margin-bottom:8px}
+  .promo p{color:var(--muted);font-size:14.5px;margin-bottom:18px;min-height:3em}
+  .promo .btn{padding:9px 18px;font-size:13.5px}
+
+  .cashier{text-align:center;background:radial-gradient(600px 240px at 50% 0,rgba(245,196,81,.12),transparent 60%);border:1px solid var(--line);border-radius:20px;padding:46px 24px}
+  .cashier h2{font-size:32px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+  .cashier p{color:var(--muted);font-size:16.5px;margin-bottom:24px}
+  .pays{display:flex;gap:12px;justify-content:center;margin-top:22px;opacity:.8;flex-wrap:wrap}
+  .pays span{border:1px solid var(--line);border-radius:8px;padding:7px 14px;font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+
+  /* ---- footer ---- */
+  footer.site{border-top:1px solid var(--line);margin-top:24px;padding:38px 0 46px;background:var(--bg2)}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:start;margin-bottom:26px}
+  .rg{border:1px solid rgba(245,196,81,.28);border-radius:14px;padding:18px 20px;background:rgba(245,196,81,.05)}
+  .rg h4{font-size:15px;font-weight:800;color:var(--gold);margin-bottom:6px;display:flex;align-items:center;gap:9px}
+  .rg .age{background:var(--gold);color:#2a1c00;font-size:12px;font-weight:900;border-radius:6px;padding:2px 7px}
+  .rg p{font-size:13.5px;color:var(--muted)}
+  .lic{font-size:13.5px;color:var(--muted);align-self:center}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--line)}
+  .foot-links a{font-size:13.5px;color:var(--muted);font-weight:600}
+  .foot-links a:hover{color:var(--ink)}
+  .copy{font-size:12.5px;color:var(--muted);opacity:.7;margin-top:16px}
+
+  @media(max-width:900px){
+    .hero-in,.live,.foot-top{grid-template-columns:1fr}
+    .trust{grid-template-columns:repeat(2,1fr)}
+    .grid-slots,.grid-promos{grid-template-columns:1fr 1fr}
+    .hero h1{font-size:40px}
+  }
+  @media(max-width:560px){.grid-slots,.grid-promos,.trust{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ===== Snapling demo switcher ===== -->
+<div class="sn-bar">
+  <div class="sn-bar-in">
+    <div class="sn-brand"><span class="sn-dot">S</span>&nbsp;<b>Snapling</b>&nbsp;· live localization demo</div>
+    <div class="sn-langs" id="sn-langs"></div>
+    <div class="sn-note"><span class="sn-live"></span> <span id="sn-status">Showing the source site (English). Pick a language — every string is real Snapling output; the brand and game titles stay intact.</span></div>
+  </div>
+</div>
+
+<!-- ===== Casino site ===== -->
+<header class="site"><div class="wrap site-in">
+  <a class="logo"><span class="chip">♠</span>Lucky<b>Spin</b></a>
+  <nav class="main">
+    <a data-i18n="nav_slots">Slots</a>
+    <a data-i18n="nav_live">Live Casino</a>
+    <a data-i18n="nav_promos">Promotions</a>
+    <a data-i18n="nav_cashier">Cashier</a>
+  </nav>
+  <div class="head-cta">
+    <button class="btn btn-ghost" data-i18n="nav_login">Log in</button>
+    <button class="btn btn-gold" data-i18n="nav_signup">Sign up</button>
+  </div>
+</div></header>
+
+<section class="hero"><div class="wrap hero-in">
+  <div>
+    <span class="kicker" data-i18n="hero_kicker">Welcome bonus</span>
+    <h1 data-i18n="hero_title">Win big tonight</h1>
+    <p class="sub" data-i18n="hero_sub">Get a 100% welcome bonus up to $500 on your first deposit — plus 100 free spins.</p>
+    <div class="cta-row">
+      <button class="btn btn-mag btn-lg" data-i18n="hero_cta">Join now</button>
+      <button class="btn btn-ghost btn-lg" data-i18n="hero_cta2">Browse games</button>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="jack"><span data-i18n="jackpot_hero_label">Tonight's jackpot</span>: <b>$1,240,000</b></div>
+    <div class="reel"><span>7️⃣</span><span>💎</span><span>7️⃣</span></div>
+  </div>
+</div></section>
+
+<div class="wrap"><div class="trust">
+  <div><span class="ic">⚡</span><span data-i18n="trust_1">Instant payouts</span></div>
+  <div><span class="ic">🔒</span><span data-i18n="trust_2">Licensed & secure</span></div>
+  <div><span class="ic">🎧</span><span data-i18n="trust_3">Live dealers 24/7</span></div>
+  <div><span class="ic">🎁</span><span data-i18n="trust_4">Daily bonuses</span></div>
+</div></div>
+
+<section><div class="wrap">
+  <div class="sec-head">
+    <div><h2 data-i18n="slots_title">Popular slots</h2><p data-i18n="slots_sub">Hand-picked games our players love</p></div>
+    <button class="btn btn-ghost" data-i18n="see_all">See all games</button>
+  </div>
+  <div class="grid-slots">
+    <div class="slot"><div class="thumb">🍯<span class="jp"><span data-i18n="jackpot_label">Jackpot</span> $82,400</span></div><div class="body"><span class="name">Golden Spin</span><button class="btn btn-gold" data-i18n="play">Play</button></div></div>
+    <div class="slot"><div class="thumb">🗿<span class="jp"><span data-i18n="jackpot_label">Jackpot</span> $54,900</span></div><div class="body"><span class="name">Aztec Fortune</span><button class="btn btn-gold" data-i18n="play">Play</button></div></div>
+    <div class="slot"><div class="thumb">🌆<span class="jp"><span data-i18n="jackpot_label">Jackpot</span> $119,000</span></div><div class="body"><span class="name">Neon Nights</span><button class="btn btn-gold" data-i18n="play">Play</button></div></div>
+    <div class="slot"><div class="thumb">🐉<span class="jp"><span data-i18n="jackpot_label">Jackpot</span> $71,300</span></div><div class="body"><span class="name">Dragon's Hoard</span><button class="btn btn-gold" data-i18n="play">Play</button></div></div>
+    <div class="slot"><div class="thumb">🍒<span class="jp"><span data-i18n="jackpot_label">Jackpot</span> $38,750</span></div><div class="body"><span class="name">Fruit Frenzy</span><button class="btn btn-gold" data-i18n="play">Play</button></div></div>
+    <div class="slot"><div class="thumb">🏴‍☠️<span class="jp"><span data-i18n="jackpot_label">Jackpot</span> $96,100</span></div><div class="body"><span class="name">Pirate's Bounty</span><button class="btn btn-gold" data-i18n="play">Play</button></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap"><div class="live">
+  <div>
+    <h2 data-i18n="live_title">Live Casino</h2>
+    <p data-i18n="live_sub">Real dealers, real tables, streamed in real time — straight from the studio floor.</p>
+    <button class="btn btn-mag btn-lg" data-i18n="live_cta">Enter live casino</button>
+  </div>
+  <div class="live-tables">
+    <div class="table-chip"><div class="em">🎡</div><div class="t" data-i18n="table_roulette">Live Roulette</div></div>
+    <div class="table-chip"><div class="em">🃏</div><div class="t" data-i18n="table_blackjack">Live Blackjack</div></div>
+    <div class="table-chip"><div class="em">🎴</div><div class="t" data-i18n="table_baccarat">Live Baccarat</div></div>
+  </div>
+</div></div></section>
+
+<section><div class="wrap">
+  <div class="sec-head"><div><h2 data-i18n="promos_title">This week's promotions</h2><p data-i18n="promos_sub">More ways to play, every day of the week</p></div></div>
+  <div class="grid-promos">
+    <div class="promo"><h3 data-i18n="promo1_title">Welcome Package</h3><p data-i18n="promo1_body">100% up to $500 plus 100 free spins on your first deposit.</p><button class="btn btn-gold" data-i18n="promo_cta">Claim offer</button></div>
+    <div class="promo"><h3 data-i18n="promo2_title">Weekend Reload</h3><p data-i18n="promo2_body">A 50% bonus up to $200 every Saturday and Sunday.</p><button class="btn btn-gold" data-i18n="promo_cta">Claim offer</button></div>
+    <div class="promo"><h3 data-i18n="promo3_title">Cashback Monday</h3><p data-i18n="promo3_body">Get 10% back on your net losses, every Monday.</p><button class="btn btn-gold" data-i18n="promo_cta">Claim offer</button></div>
+  </div>
+</div></section>
+
+<section><div class="wrap"><div class="cashier">
+  <h2 data-i18n="cashier_title">Deposit and play in seconds</h2>
+  <p data-i18n="cashier_sub">Fast, secure payments. Withdraw your winnings whenever you want.</p>
+  <button class="btn btn-mag btn-lg" data-i18n="cashier_cta">Make a deposit</button>
+  <div class="pays"><span>VISA</span><span>Mastercard</span><span>Apple&nbsp;Pay</span><span data-i18n="pay_bank">Bank transfer</span><span>Crypto</span></div>
+</div></div></section>
+
+<footer class="site"><div class="wrap">
+  <div class="foot-top">
+    <div class="rg">
+      <h4><span class="age">18+</span> <span data-i18n="footer_rg_title">Play responsibly</span></h4>
+      <p data-i18n="footer_rg_body">Gambling can be addictive. Please play responsibly and know your limits. Players must be 18 or older.</p>
+    </div>
+    <div class="lic" data-i18n="footer_license">LuckySpin is licensed and regulated. Games are available only where permitted by law.</div>
+  </div>
+  <div class="foot-links">
+    <a data-i18n="footer_terms">Terms &amp; Conditions</a>
+    <a data-i18n="footer_privacy">Privacy Policy</a>
+    <a data-i18n="footer_rg_link">Responsible Gaming</a>
+    <a data-i18n="footer_support">Support</a>
+    <a data-i18n="footer_about">About us</a>
+  </div>
+  <div class="copy" data-i18n="footer_copy">© 2026 LuckySpin. All rights reserved.</div>
+</div></footer>
+
+<script id="i18n-data" type="application/json">{"en":{},"de":{"play":"Spielen","promo2_body":"Ein 50% Bonus bis zu 200 $ jeden Samstag und Sonntag.","trust_1":"Sofortige Auszahlungen","trust_2":"Lizenziert & sicher","trust_3":"Live-Dealer 24/7","trust_4":"Tägliche Boni","promo1_body":"100% bis zu 500 $ plus 100 Freispiele auf Ihre erste Einzahlung.","live_title":"Live-Casino","hero_kicker":"Willkommensbonus","footer_about":"Über uns","footer_rg_title":"Verantwortungsbewusst spielen","table_roulette":"Live Roulette","cashier_cta":"Eine Einzahlung tätigen","footer_rg_link":"Verantwortungsbewusstes Spielen","nav_promos":"Aktionen","slots_sub":"Handverlesene Spiele, die unsere Spieler lieben","promo_cta":"Angebot beanspruchen","footer_terms":"Allgemeine Geschäftsbedingungen","promo1_title":"Willkommenspaket","see_all":"Alle Spiele anzeigen","live_cta":"Live-Casino betreten","hero_cta2":"Spiele durchsuchen","footer_rg_body":"Glücksspiel kann süchtig machen. Bitte spielen Sie verantwortungsbewusst und kennen Sie Ihre Grenzen. Spieler müssen 18 Jahre oder älter sein.","slots_title":"Beliebte Spielautomaten","promo2_title":"Wochenend-Reload","hero_title":"Gewinnen Sie heute Abend groß","nav_live":"Live-Casino","pay_bank":"Banküberweisung","table_blackjack":"Live Blackjack","footer_license":"LuckySpin ist lizenziert und reguliert. Spiele sind nur dort verfügbar, wo dies gesetzlich zulässig ist.","table_baccarat":"Live Baccarat","nav_login":"Anmelden","promos_title":"Aktionen dieser Woche","nav_signup":"Registrieren","hero_sub":"Erhalten Sie einen 100% Willkommensbonus bis zu 500 $ auf Ihre erste Einzahlung – plus 100 Freispiele.","jackpot_label":"Jackpot","footer_support":"Support","nav_cashier":"Kasse","promo3_title":"Cashback Montag","nav_slots":"Spielautomaten","live_sub":"Echte Dealer, echte Tische, gestreamt in Echtzeit – direkt aus dem Studio.","footer_copy":"© 2026 LuckySpin. Alle Rechte vorbehalten.","hero_cta":"Jetzt beitreten","promo3_body":"Erhalten Sie jeden Montag 10% Ihrer Nettoverluste zurück.","cashier_title":"Einzahlen und in Sekundenschnelle spielen","promos_sub":"Mehr Spielmöglichkeiten, jeden Tag der Woche","jackpot_hero_label":"Der heutige Jackpot","cashier_sub":"Schnelle, sichere Zahlungen. Heben Sie Ihre Gewinne ab, wann immer Sie möchten.","footer_privacy":"Datenschutzrichtlinie"},"es":{"play":"Jugar","promo2_body":"Un bono del 50% hasta $200 cada sábado y domingo.","trust_1":"Pagos instantáneos","trust_2":"Con licencia y seguro","trust_3":"Crupiers en vivo 24/7","trust_4":"Bonos diarios","promo1_body":"100% hasta $500 más 100 giros gratis en tu primer depósito.","live_title":"Casino en vivo","hero_kicker":"Bono de bienvenida","footer_about":"Sobre nosotros","footer_rg_title":"Juega responsablemente","table_roulette":"Ruleta en vivo","cashier_cta":"Realizar un depósito","footer_rg_link":"Juego responsable","nav_promos":"Promociones","slots_sub":"Juegos seleccionados que aman nuestros jugadores","promo_cta":"Reclamar oferta","footer_terms":"Términos y condiciones","promo1_title":"Paquete de bienvenida","see_all":"Ver todos los juegos","live_cta":"Entrar al casino en vivo","hero_cta2":"Explorar juegos","footer_rg_body":"El juego puede ser adictivo. Por favor, juega de forma responsable y conoce tus límites. Los jugadores deben tener 18 años o más.","slots_title":"Tragaperras populares","promo2_title":"Recarga de fin de semana","hero_title":"Gana a lo grande esta noche","nav_live":"Casino en vivo","pay_bank":"Transferencia bancaria","table_blackjack":"Blackjack en vivo","footer_license":"LuckySpin tiene licencia y está regulado. Los juegos solo están disponibles donde lo permite la ley.","table_baccarat":"Baccarat en vivo","nav_login":"Iniciar sesión","promos_title":"Promociones de esta semana","nav_signup":"Registrarse","hero_sub":"Obtén un bono de bienvenida del 100% hasta $500 en tu primer depósito, además de 100 giros gratis.","jackpot_label":"Bote","footer_support":"Soporte","nav_cashier":"Caja","promo3_title":"Cashback Lunes","nav_slots":"Tragaperras","live_sub":"Crupiers reales, mesas reales, transmitidos en tiempo real, directamente desde el estudio.","footer_copy":"© 2026 LuckySpin. Todos los derechos reservados.","hero_cta":"Únete ahora","promo3_body":"Recibe un 10% de reembolso en tus pérdidas netas, cada lunes.","cashier_title":"Deposita y juega en segundos","promos_sub":"Más formas de jugar, todos los días de la semana","jackpot_hero_label":"Bote de esta noche","cashier_sub":"Pagos rápidos y seguros. Retira tus ganancias cuando quieras.","footer_privacy":"Política de privacidad"},"pt":{"play":"Jogar","promo2_body":"Um bônus de 50% até $200 todos os sábados e domingos.","trust_1":"Pagamentos instantâneos","trust_2":"Licenciado e seguro","trust_3":"Dealer reais 24/7","trust_4":"Bônus diários","promo1_body":"100% até $500 mais 100 rodadas grátis no seu primeiro depósito.","live_title":"Cassino ao Vivo","hero_kicker":"Bônus de boas-vindas","footer_about":"Sobre nós","footer_rg_title":"Jogue com responsabilidade","table_roulette":"Roleta ao Vivo","cashier_cta":"Fazer um depósito","footer_rg_link":"Jogo Responsável","nav_promos":"Promoções","slots_sub":"Jogos selecionados que nossos jogadores adoram","promo_cta":"Reivindicar oferta","footer_terms":"Termos e Condições","promo1_title":"Pacote de Boas-Vindas","see_all":"Ver todos os jogos","live_cta":"Entrar no cassino ao vivo","hero_cta2":"Navegar pelos jogos","footer_rg_body":"O jogo pode ser viciante. Por favor, jogue com responsabilidade e conheça seus limites. Os jogadores devem ter 18 anos ou mais.","slots_title":"Slots populares","promo2_title":"Recarga de Fim de Semana","hero_title":"Ganhe muito hoje à noite","nav_live":"Cassino ao Vivo","pay_bank":"Transferência bancária","table_blackjack":"Blackjack ao Vivo","footer_license":"LuckySpin é licenciado e regulamentado. Os jogos estão disponíveis apenas onde permitido por lei.","table_baccarat":"Baccarat ao Vivo","nav_login":"Entrar","promos_title":"Promoções desta semana","nav_signup":"Cadastre-se","hero_sub":"Ganhe um bônus de boas-vindas de 100% até $500 no seu primeiro depósito — mais 100 rodadas grátis.","jackpot_label":"Jackpot","footer_support":"Suporte","nav_cashier":"Caixa","promo3_title":"Cashback de Segunda-feira","nav_slots":"Slots","live_sub":"Dealer reais, mesas reais, transmitidos em tempo real — direto do estúdio.","footer_copy":"© 2026 LuckySpin. Todos os direitos reservados.","hero_cta":"Junte-se agora","promo3_body":"Receba 10% de volta nas suas perdas líquidas, toda segunda-feira.","cashier_title":"Deposite e jogue em segundos","promos_sub":"Mais maneiras de jogar, todos os dias da semana","jackpot_hero_label":"Jackpot de hoje à noite","cashier_sub":"Pagamentos rápidos e seguros. Retire seus ganhos quando quiser.","footer_privacy":"Política de Privacidade"},"fr":{"play":"Jouer","promo2_body":"Un bonus de 50 % jusqu'à 200 $ tous les samedis et dimanches.","trust_1":"Paiements instantanés","trust_2":"Agrée et sécurisé","trust_3":"Croupiers en direct 24h/24 et 7j/7","trust_4":"Bonus quotidiens","promo1_body":"100 % jusqu'à 500 $ plus 100 tours gratuits sur votre premier dépôt.","live_title":"Casino en direct","hero_kicker":"Bonus de bienvenue","footer_about":"À propos de nous","footer_rg_title":"Jouer de manière responsable","table_roulette":"Roulette en direct","cashier_cta":"Effectuer un dépôt","footer_rg_link":"Jeu responsable","nav_promos":"Promotions","slots_sub":"Jeux sélectionnés que nos joueurs adorent","promo_cta":"Réclamer l'offre","footer_terms":"Conditions générales","promo1_title":"Forfait de bienvenue","see_all":"Voir tous les jeux","live_cta":"Entrer dans le casino en direct","hero_cta2":"Parcourir les jeux","footer_rg_body":"Le jeu peut créer une dépendance. Veuillez jouer de manière responsable et connaître vos limites. Les joueurs doivent être âgés de 18 ans ou plus.","slots_title":"Machines à sous populaires","promo2_title":"Rechargement du week-end","hero_title":"Gagnez gros ce soir","nav_live":"Casino en direct","pay_bank":"Virement bancaire","table_blackjack":"Blackjack en direct","footer_license":"LuckySpin est agréé et réglementé. Les jeux ne sont disponibles que là où la loi le permet.","table_baccarat":"Baccarat en direct","nav_login":"Se connecter","promos_title":"Promotions de cette semaine","nav_signup":"S'inscrire","hero_sub":"Obtenez un bonus de bienvenue de 100 % jusqu'à 500 $ sur votre premier dépôt — plus 100 tours gratuits.","jackpot_label":"Jackpot","footer_support":"Support","nav_cashier":"Caisse","promo3_title":"Lundi Cashback","nav_slots":"Machines à sous","live_sub":"Des croupiers réels, de vraies tables, diffusés en temps réel — directement depuis le plateau du studio.","footer_copy":"© 2026 LuckySpin. Tous droits réservés.","hero_cta":"Rejoignez-nous","promo3_body":"Obtenez 10 % de remise sur vos pertes nettes, chaque lundi.","cashier_title":"Déposez et jouez en quelques secondes","promos_sub":"Plus de façons de jouer, chaque jour de la semaine","jackpot_hero_label":"Jackpot de ce soir","cashier_sub":"Paiements rapides et sécurisés. Retirez vos gains quand vous le souhaitez.","footer_privacy":"Politique de confidentialité"},"tr":{"play":"Oyna","promo2_body":"Her Cumartesi ve Pazar 200$'a kadar %50 bonus.","trust_1":"Anında ödemeler","trust_2":"Lisanslı ve güvenli","trust_3":"7/24 Canlı krupiyeler","trust_4":"Günlük bonuslar","promo1_body":"İlk para yatırmanızda 500$'a kadar %100 ve 100 bedava dönüş.","live_title":"Canlı Casino","hero_kicker":"Hoşgeldin bonusu","footer_about":"Hakkımızda","footer_rg_title":"Sorumlu oynayın","table_roulette":"Canlı Rulet","cashier_cta":"Para yatırın","footer_rg_link":"Sorumlu Oyun","nav_promos":"Promosyonlar","slots_sub":"Oyuncularımızın sevdiği özenle seçilmiş oyunlar","promo_cta":"Teklifi talep et","footer_terms":"Şartlar ve Koşullar","promo1_title":"Hoşgeldin Paketi","see_all":"Tüm oyunları gör","live_cta":"Canlı casinoya girin","hero_cta2":"Oyunlara göz atın","footer_rg_body":"Kumar bağımlılık yapabilir. Lütfen sorumlu bir şekilde oynayın ve sınırlarınızı bilin. Oyuncuların 18 yaşından büyük olması gerekmektedir.","slots_title":"Popüler slotlar","promo2_title":"Hafta Sonu Yeniden Yükleme","hero_title":"Bu gece büyük kazanın","nav_live":"Canlı Casino","pay_bank":"Banka havalesi","table_blackjack":"Canlı Blackjack","footer_license":"LuckySpin lisanslı ve denetlenen bir kuruluştur. Oyunlar yalnızca yasaların izin verdiği yerlerde mevcuttur.","table_baccarat":"Canlı Baccarat","nav_login":"Giriş yap","promos_title":"Bu haftanın promosyonları","nav_signup":"Kayıt ol","hero_sub":"İlk para yatırmanızda 500$'a kadar %100 hoşgeldin bonusu kazanın — ayrıca 100 bedava dönüş.","jackpot_label":"Jackpot","footer_support":"Destek","nav_cashier":"Kasa","promo3_title":"Nakit Geri Pazartesi","nav_slots":"Slotlar","live_sub":"Gerçek krupiyeler, gerçek masalar, stüdyodan canlı olarak yayınlanıyor.","footer_copy":"© 2026 LuckySpin. Tüm hakları saklıdır.","hero_cta":"Şimdi katılın","promo3_body":"Her Pazartesi net kayıplarınızın %10'unu geri alın.","cashier_title":"Saniyeler içinde para yatırın ve oynayın","promos_sub":"Haftanın her günü oynamanın daha fazla yolu","jackpot_hero_label":"Bu geceki jackpot","cashier_sub":"Hızlı, güvenli ödemeler. Kazançlarınızı istediğiniz zaman çekin.","footer_privacy":"Gizlilik Politikası"}}</script>
+<script>
+(function(){
+  var DATA = JSON.parse(document.getElementById('i18n-data').textContent);
+  var LANGS = [
+    {code:'en', label:'EN', name:'English', src:true},
+    {code:'de', label:'DE', name:'Deutsch'},
+    {code:'es', label:'ES', name:'Español'},
+    {code:'pt', label:'PT', name:'Português'},
+    {code:'fr', label:'FR', name:'Français'},
+    {code:'tr', label:'TR', name:'Türkçe'}
+  ];
+  // capture the authored English as the source dictionary
+  var EN = {};
+  document.querySelectorAll('[data-i18n]').forEach(function(el){ EN[el.getAttribute('data-i18n')] = el.innerHTML; });
+  DATA.en = EN;
+  var htmlLang = {en:'en',de:'de',es:'es',pt:'pt',fr:'fr',tr:'tr'};
+  var STATUS = {
+    en:'Showing the source site (English). Pick a language — every translated string is real Snapling output; the brand and game titles stay intact.',
+    de:'Deutsch — every visible string was localized by Snapling. Notice: “LuckySpin” and the game titles are untouched (brand lock).',
+    es:'Español — localized by Snapling in one pass. The brand and game titles stay intact.',
+    pt:'Português — localized by Snapling. Numbers, bonus terms and the brand are preserved.',
+    fr:'Français — localized by Snapling. The 18+ / responsible-gaming notice is translated, not dropped.',
+    tr:'Türkçe — localized by Snapling, diacritics and all. Brand and titles stay intact.'
+  };
+  var bar = document.getElementById('sn-langs');
+  var status = document.getElementById('sn-status');
+  var current = 'en';
+  if (new URLSearchParams(location.search).get('video')) document.body.classList.add('sn-video');
+  function apply(code, noFlash){
+    var dict = DATA[code] || {};
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k = el.getAttribute('data-i18n');
+      var v = (dict[k] != null && dict[k] !== '') ? dict[k] : EN[k];
+      if(v != null) el.innerHTML = v;
+    });
+    document.documentElement.lang = htmlLang[code] || 'en';
+    status.textContent = STATUS[code] || '';
+    current = code;
+    if(!noFlash){
+      document.body.classList.remove('sn-flash'); void document.body.offsetWidth; document.body.classList.add('sn-flash');
+      clearTimeout(window.__snFlashT); window.__snFlashT = setTimeout(function(){ document.body.classList.remove('sn-flash'); }, 700);
+    }
+    Array.prototype.forEach.call(bar.children, function(b){ b.classList.toggle('active', b.dataset.code === code); });
+  }
+  LANGS.forEach(function(l){
+    var b = document.createElement('button');
+    b.className = 'sn-lang' + (l.code==='en'?' active':'');
+    b.dataset.code = l.code;
+    b.innerHTML = l.label + (l.src ? ' <span class="src">· source</span>' : '');
+    b.title = l.name;
+    b.onclick = function(){ apply(l.code); };
+    bar.appendChild(b);
+  });
+  // deep-link: ?lang=de|es|pt|fr|tr preselects a language
+  var initial = (new URLSearchParams(location.search).get('lang') || 'en').toLowerCase();
+  if (initial !== 'en' && DATA[initial]) apply(initial, true);
+})();
+</script>
+</body>
+</html>
