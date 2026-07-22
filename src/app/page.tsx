@@ -57,10 +57,10 @@ function Hero() {
             <span className="h-1.5 w-1.5 rounded-full bg-lime" />
             CLOSED PILOT — ONBOARDING NOW
           </span>
-          <h1 className="h-display mt-6 text-5xl sm:text-6xl">
+          <h1 className="h-display mt-6 text-balance text-5xl sm:text-6xl">
             Localization that <span className="text-lime">sees your game</span>.
           </h1>
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
+          <p className="mt-6 max-w-md text-pretty text-lg leading-relaxed text-muted">
             Snapling translates every string with a screenshot of where it appears — then checks
             every localized screen for overflow, truncation and untranslated text. Text, voice and
             store creatives in one engine, via native SDKs for Unity, Unreal and Flutter.
@@ -209,12 +209,12 @@ function Modules() {
             }`}
           >
             {c.soon && (
-              <span className="absolute right-4 top-4 rounded-full bg-lime/15 px-2 py-0.5 font-mono text-[10px] tracking-wide text-lime">
+              <span className="absolute right-4 top-4 rounded bg-lime/15 px-2 py-0.5 font-mono text-[10px] tracking-wide text-lime">
                 SOON
               </span>
             )}
             {c.highlight && (
-              <span className="absolute right-4 top-4 rounded-full bg-lime px-2 py-0.5 font-mono text-[10px] tracking-wide text-black">
+              <span className="absolute right-4 top-4 rounded bg-lime px-2 py-0.5 font-mono text-[10px] tracking-wide text-black">
                 CORE
               </span>
             )}
@@ -412,7 +412,7 @@ function Why() {
   ] as const;
   return (
     <Section id="why">
-      <Eyebrow>What you get</Eyebrow>
+      <Eyebrow>Why Snapling</Eyebrow>
       <H2>What you get</H2>
       <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {items.map(([icon, title, body], i) => (
@@ -422,6 +422,14 @@ function Why() {
             <p className="mt-2 text-sm leading-relaxed text-muted">{body}</p>
           </div>
         ))}
+        {/* 8 items in a 3-col grid leave a hole — make the 9th cell a deliberate action. */}
+        <a
+          href="#contact"
+          className="group flex items-center justify-center gap-2 bg-ink p-6 font-semibold text-lime transition-colors hover:bg-lime/[0.04] sm:col-span-2 lg:col-span-1"
+        >
+          {CTA}
+          <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+        </a>
       </div>
     </Section>
   );
@@ -527,7 +535,7 @@ function Pricing() {
             }`}
           >
             {t.highlight && (
-              <span className="absolute right-5 top-6 rounded-full bg-lime px-2 py-0.5 font-mono text-[10px] tracking-wide text-black">
+              <span className="absolute right-5 top-6 rounded bg-lime px-2 py-0.5 font-mono text-[10px] tracking-wide text-black">
                 MOST POPULAR
               </span>
             )}
@@ -598,7 +606,7 @@ function FinalCta() {
           aria-hidden
           className="grid-band pointer-events-none absolute inset-0 [mask-image:radial-gradient(70%_80%_at_50%_0%,black,transparent)]"
         />
-        <h2 className="h-display text-4xl sm:text-5xl">{CTA}</h2>
+        <h2 className="h-display text-balance text-4xl sm:text-5xl">{CTA}</h2>
         <p className="mx-auto mt-5 max-w-lg text-muted">
           We&apos;re onboarding a small group of studios for closed pilots. Bring your build and a few
           assets — we&apos;ll localize a slice of it with you and hand back the LQA report. Pilot
@@ -667,10 +675,10 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
 }
 function H2({ children }: { children: React.ReactNode }) {
-  return <h2 className="h-display mt-4 text-4xl sm:text-5xl">{children}</h2>;
+  return <h2 className="h-display mt-4 text-balance text-4xl sm:text-5xl">{children}</h2>;
 }
 function Lead({ children }: { children: React.ReactNode }) {
-  return <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">{children}</p>;
+  return <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-muted">{children}</p>;
 }
 
 /** A third-party statistic with its source linked — checkable, not our estimate. */
