@@ -47,6 +47,10 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="glow pointer-events-none absolute inset-x-0 top-0 h-[520px]" />
+      <div
+        aria-hidden
+        className="grid-band pointer-events-none absolute inset-x-0 top-0 h-[520px] [mask-image:radial-gradient(70%_70%_at_50%_0%,black,transparent)]"
+      />
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 pt-16 pb-20 lg:grid-cols-2 lg:pt-24">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-3 py-1.5 font-mono text-[11px] tracking-wide text-lime">
@@ -95,7 +99,7 @@ function Hero() {
 function EngineTicker() {
   const engines = ["Unity", "Unreal", "Flutter", "Web"];
   return (
-    <section className="border-y border-line bg-white/[0.015]">
+    <section className="grid-band border-y border-line bg-white/[0.015]">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-3 px-6 py-5">
         <span className="font-mono text-[11px] tracking-widest text-faint">ONE SDK, EVERY ENGINE</span>
         {engines.map((e) => (
@@ -586,6 +590,10 @@ function FinalCta() {
   return (
     <Section id="contact">
       <div className="glow relative overflow-hidden rounded-3xl border border-line-strong bg-white/[0.02] px-6 py-16 text-center">
+        <div
+          aria-hidden
+          className="grid-band pointer-events-none absolute inset-0 [mask-image:radial-gradient(70%_80%_at_50%_0%,black,transparent)]"
+        />
         <h2 className="h-display text-4xl sm:text-5xl">{CTA}</h2>
         <p className="mx-auto mt-5 max-w-lg text-muted">
           We&apos;re onboarding a small group of studios for closed pilots. Bring your build and a few
