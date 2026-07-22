@@ -21,7 +21,7 @@ export default function Home() {
       <JsonLd data={softwareApplicationJsonLd()} />
       <JsonLd data={faqJsonLd()} />
       <Header />
-      <main>
+      <main id="main">
         <Hero />
         <EngineTicker />
         <Problem />
