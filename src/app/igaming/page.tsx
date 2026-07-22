@@ -184,7 +184,7 @@ function WinScreen() {
       {/* Win banner */}
       <div className="text-center">
         <p className="font-mono text-[11px] tracking-[0.3em] text-[#f5c451]">BIG WIN</p>
-        <p className="h-display mt-1 text-4xl text-white">1,250.00&nbsp;€</p>
+        <p className="h-display mt-1 text-4xl text-white">$1,250.00</p>
       </div>
 
       {/* The two buttons — Collect vs Gamble (double or nothing) */}
