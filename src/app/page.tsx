@@ -66,10 +66,10 @@ function Hero() {
             store creatives in one engine, via native SDKs for Unity, Unreal and Flutter.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#contact" className="rounded-lg bg-lime px-5 py-3 font-semibold text-black transition hover:bg-lime-dim">
+            <a href="#contact" className="rounded-lg bg-lime px-5 py-3 font-semibold text-black transition hover:bg-lime-dim active:scale-[0.98]">
               {CTA} →
             </a>
-            <a href="#how" className="rounded-lg border border-line-strong px-5 py-3 font-semibold text-white/90 transition hover:bg-white/5">
+            <a href="#how" className="rounded-lg border border-line-strong px-5 py-3 font-semibold text-white/90 transition hover:bg-white/5 active:scale-[0.98]">
               See how it works
             </a>
           </div>
@@ -202,8 +202,10 @@ function Modules() {
         {cards.map((c) => (
           <div
             key={c.title}
-            className={`relative flex flex-col rounded-2xl border p-6 ${
-              c.highlight ? "border-lime/50 bg-lime/[0.06]" : "border-line bg-panel"
+            className={`relative flex flex-col rounded-2xl border p-6 transition-colors ${
+              c.highlight
+                ? "border-lime/50 bg-lime/[0.06] hover:border-lime/70"
+                : "border-line bg-panel hover:border-line-strong"
             }`}
           >
             {c.soon && (
@@ -330,7 +332,7 @@ function LqaDemo() {
             href="https://www.keywordsstudios.com/en/about-us/news-events/news/a-step-by-step-guide-to-game-localization/"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline decoration-line underline-offset-4 hover:text-white/70"
+            className="underline decoration-line underline-offset-4 transition-colors hover:text-white/70"
           >
             Keywords Studios ↗
           </a>{" "}
@@ -439,7 +441,7 @@ function WhoFor() {
       <H2>Built for indie studios, mobile devs &amp; publishers</H2>
       <div className="mt-12 grid gap-4 md:grid-cols-3">
         {cards.map(([title, body]) => (
-          <div key={title} className="rounded-2xl border border-line bg-panel p-6">
+          <div key={title} className="rounded-2xl border border-line bg-panel p-6 transition-colors hover:border-line-strong">
             <h3 className="text-lg font-semibold">{title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted">{body}</p>
           </div>
@@ -518,8 +520,10 @@ function Pricing() {
         {tiers.map((t) => (
           <div
             key={t.name}
-            className={`relative flex flex-col rounded-2xl border p-6 ${
-              t.highlight ? "border-lime/60 bg-lime/[0.06]" : "border-line bg-panel"
+            className={`relative flex flex-col rounded-2xl border p-6 transition-colors ${
+              t.highlight
+                ? "border-lime/60 bg-lime/[0.06] hover:border-lime/80"
+                : "border-line bg-panel hover:border-line-strong"
             }`}
           >
             {t.highlight && (
@@ -543,7 +547,7 @@ function Pricing() {
             </ul>
             <a
               href="#contact"
-              className={`mt-6 rounded-lg px-4 py-2.5 text-center text-sm font-semibold transition ${
+              className={`mt-6 rounded-lg px-4 py-2.5 text-center text-sm font-semibold transition active:scale-[0.98] ${
                 t.highlight
                   ? "bg-lime text-black hover:bg-lime-dim"
                   : "border border-line-strong text-white/90 hover:bg-white/5"
@@ -571,7 +575,7 @@ function Faq() {
       <H2>Common questions</H2>
       <div className="mt-10 divide-y divide-line overflow-hidden rounded-2xl border border-line">
         {faqs.map((f) => (
-          <details key={f.q} className="group bg-panel/40 px-6 py-5 open:bg-panel/70">
+          <details key={f.q} className="group bg-panel/40 px-6 py-5 transition-colors hover:bg-panel/60 open:bg-panel/70">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
               {f.q}
               <span className="text-lime transition-transform group-open:rotate-45">+</span>
@@ -622,20 +626,20 @@ function Footer() {
         <div>
           <p className="font-mono text-[11px] tracking-widest text-faint">PRODUCT</p>
           <ul className="mt-4 space-y-2 text-sm text-muted">
-            <li><a href="#modules" className="hover:text-white">Text localization</a></li>
-            <li><a href="#modules" className="hover:text-white">Voice localization</a></li>
-            <li><a href="#modules" className="hover:text-white">Creative localization</a></li>
-            <li><a href="#context" className="hover:text-white">Context-aware translation</a></li>
-            <li><a href="#lqa" className="hover:text-white">Automated LQA</a></li>
-            <li><a href="#modules" className="hover:text-white">Video localization (soon)</a></li>
-            <li><a href="#pricing" className="hover:text-white">Pricing</a></li>
+            <li><a href="#modules" className="transition-colors hover:text-white">Text localization</a></li>
+            <li><a href="#modules" className="transition-colors hover:text-white">Voice localization</a></li>
+            <li><a href="#modules" className="transition-colors hover:text-white">Creative localization</a></li>
+            <li><a href="#context" className="transition-colors hover:text-white">Context-aware translation</a></li>
+            <li><a href="#lqa" className="transition-colors hover:text-white">Automated LQA</a></li>
+            <li><a href="#modules" className="transition-colors hover:text-white">Video localization (soon)</a></li>
+            <li><a href="#pricing" className="transition-colors hover:text-white">Pricing</a></li>
           </ul>
         </div>
         <div>
           <p className="font-mono text-[11px] tracking-widest text-faint">CONTACT</p>
           <ul className="mt-4 space-y-2 text-sm text-muted">
             <li>Telegram — @snapling</li>
-            <li><a href="mailto:hello@snapling.io" className="hover:text-white">hello@snapling.io</a></li>
+            <li><a href="mailto:hello@snapling.io" className="transition-colors hover:text-white">hello@snapling.io</a></li>
             <li><a href="#contact" className="text-lime hover:underline">{CTA} →</a></li>
           </ul>
         </div>
@@ -679,7 +683,7 @@ function SourcedStat({ value, body, source, href }: { value: string; body: strin
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-3 inline-block font-mono text-[10px] tracking-wide text-faint underline decoration-line underline-offset-4 hover:text-white/70"
+        className="mt-3 inline-block font-mono text-[10px] tracking-wide text-faint underline decoration-line underline-offset-4 transition-colors hover:text-white/70"
       >
         {source} ↗
       </a>

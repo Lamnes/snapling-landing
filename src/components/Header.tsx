@@ -32,7 +32,7 @@ export default function Header() {
         </nav>
         <a
           href="#contact"
-          className="rounded-lg bg-lime px-4 py-2 text-sm font-semibold text-black transition hover:bg-lime-dim"
+          className="rounded-lg bg-lime px-4 py-2 text-sm font-semibold text-black transition hover:bg-lime-dim active:scale-[0.98]"
         >
           {CTA}
         </a>

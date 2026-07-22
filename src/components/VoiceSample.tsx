@@ -69,8 +69,10 @@ export default function VoiceSample() {
             <button
               key={code}
               onClick={() => pickLang(code)}
-              className={`rounded-md px-2.5 py-1 text-xs font-semibold transition ${
-                lang === code ? "bg-lime text-black" : "border border-line text-white/70 hover:text-white"
+              className={`rounded-md px-2.5 py-1 text-xs font-semibold transition active:scale-95 ${
+                lang === code
+                  ? "bg-lime text-black"
+                  : "border border-line text-white/70 hover:border-line-strong hover:text-white"
               }`}
             >
               {LOCALES[code].short}
@@ -113,7 +115,7 @@ function Track({ active, label, onToggle }: { active: boolean; label: string; on
       <button
         onClick={onToggle}
         aria-label={active ? `Pause ${label}` : `Play ${label}`}
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-lime text-black transition hover:bg-lime-dim"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-lime text-black transition hover:bg-lime-dim active:scale-95"
       >
         {active ? (
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">

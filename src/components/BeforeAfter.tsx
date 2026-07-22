@@ -70,7 +70,20 @@ export default function BeforeAfter({
       <div className="absolute inset-y-0 z-20 -translate-x-1/2" style={{ left: `${pos}%` }}>
         <div className="mx-auto h-full w-px bg-lime/70" />
         <button
-          aria-label="Drag to compare"
+          role="slider"
+          aria-label="Compare source and localized (arrow keys to move)"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(pos)}
+          onKeyDown={(e) => {
+            const step = e.shiftKey ? 10 : 5;
+            if (e.key === "ArrowLeft") setPos((p) => Math.max(0, p - step));
+            else if (e.key === "ArrowRight") setPos((p) => Math.min(100, p + step));
+            else if (e.key === "Home") setPos(0);
+            else if (e.key === "End") setPos(100);
+            else return;
+            e.preventDefault();
+          }}
           className="absolute top-1/2 left-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-lime/60 bg-ink/90 text-lime shadow-lg backdrop-blur"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

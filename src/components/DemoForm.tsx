@@ -49,11 +49,12 @@ export default function DemoForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@studio.com"
-          className="flex-1 rounded-lg border border-line-strong bg-white/[0.03] px-4 py-3 text-white placeholder:text-faint outline-none focus:border-lime"
+          aria-label="Work email"
+          className="flex-1 rounded-lg border border-line-strong bg-white/[0.03] px-4 py-3 text-white transition-colors placeholder:text-faint outline-none focus:border-lime"
         />
         <button
           type="submit"
-          className="rounded-lg bg-lime px-5 py-3 font-semibold text-black transition hover:bg-lime-dim"
+          className="rounded-lg bg-lime px-5 py-3 font-semibold text-black transition hover:bg-lime-dim active:scale-[0.98]"
         >
           {CTA} →
         </button>
@@ -62,7 +63,8 @@ export default function DemoForm() {
         value={note}
         onChange={(e) => setNote(e.target.value)}
         placeholder="Optional: engine, languages, or a link to your build"
-        className="mt-3 w-full rounded-lg border border-line bg-white/[0.02] px-4 py-3 text-sm text-white placeholder:text-faint outline-none focus:border-lime"
+        aria-label="Optional context: engine, languages, or a link to your build"
+        className="mt-3 w-full rounded-lg border border-line bg-white/[0.02] px-4 py-3 text-sm text-white transition-colors placeholder:text-faint outline-none focus:border-lime"
       />
       <p className="mt-3 text-center text-xs text-faint">
         Send a build or a few assets — we&apos;ll localize a slice of it with you and hand back the
