@@ -102,6 +102,7 @@ export default function IGaming() {
         <ContextProof />
         <LqaGate />
         <Markets />
+        <Pitch />
         <WhoFor />
         <PricingStrip />
         <Faq />
@@ -583,6 +584,36 @@ function MarketRow({ label, children }: { label: string; children: React.ReactNo
       <span className="font-mono text-[11px] tracking-widest text-faint">{label}</span>
       {children}
     </div>
+  );
+}
+
+/* ---------------- The one-minute pitch ---------------- */
+
+function Pitch() {
+  return (
+    <Section id="pitch">
+      <Eyebrow>The one-minute version</Eyebrow>
+      <H2>The whole story, narrated</H2>
+      <Lead>
+        Problem, live localization and the compliance gate in 65 seconds — the
+        same cut we show investors and partners. Sound on.
+      </Lead>
+      <div className="mt-12 overflow-hidden rounded-2xl border border-line bg-panel transition-colors hover:border-line-strong">
+        <video
+          controls
+          playsInline
+          preload="metadata"
+          poster="/video/investor-pitch-poster.jpg"
+          className="block h-auto w-full"
+          aria-label="Snapling for iGaming — 65 second narrated overview"
+        >
+          <source src="/video/investor-pitch.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <p className="mt-4 font-mono text-[11px] tracking-widest text-faint">
+        65S · NARRATED · REAL PRODUCT OUTPUT THROUGHOUT
+      </p>
+    </Section>
   );
 }
 
