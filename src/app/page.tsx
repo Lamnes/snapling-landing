@@ -607,17 +607,19 @@ function FinalCta() {
   return (
     <Section id="contact">
       <div className="glow relative overflow-hidden rounded-3xl border border-line-strong bg-white/[0.02] px-6 py-16 text-center">
-        <div
-          aria-hidden
-          className="grid-band pointer-events-none absolute inset-0 [mask-image:radial-gradient(70%_80%_at_50%_0%,black,transparent)]"
-        />
-        <h2 className="h-display text-balance text-4xl sm:text-5xl">{CTA}</h2>
-        <p className="mx-auto mt-5 max-w-lg text-muted">
-          We&apos;re onboarding a small group of studios for closed pilots. Bring your build and a few
-          assets — we&apos;ll localize a slice of it with you and hand back the LQA report. Pilot
-          participants lock in 50% off launch pricing for 12 months.
-        </p>
-        <DemoForm />
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+          <HeroMosaic />
+          <div className="absolute inset-0 bg-[radial-gradient(90%_90%_at_50%_50%,rgba(10,11,10,0.9),rgba(10,11,10,0.62))]" />
+        </div>
+        <div className="relative z-10">
+          <h2 className="h-display text-balance text-4xl sm:text-5xl">{CTA}</h2>
+          <p className="mx-auto mt-5 max-w-lg text-muted">
+            We&apos;re onboarding a small group of studios for closed pilots. Bring your build and a few
+            assets — we&apos;ll localize a slice of it with you and hand back the LQA report. Pilot
+            participants lock in 50% off launch pricing for 12 months.
+          </p>
+          <DemoForm />
+        </div>
       </div>
     </Section>
   );
