@@ -5,6 +5,7 @@ import { Logo } from "@/components/Header";
 import { Frame } from "@/components/Mocks";
 import DemoForm from "@/components/DemoForm";
 import DemoVideo from "@/components/DemoVideo";
+import HeroMosaic from "@/components/HeroMosaic";
 import { siteName, CTA } from "@/lib/seo";
 
 /* ---------------- SEO ---------------- */
@@ -118,12 +119,14 @@ export default function IGaming() {
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="glow pointer-events-none absolute inset-x-0 top-0 h-[520px]" />
-      <div
-        aria-hidden
-        className="grid-band pointer-events-none absolute inset-x-0 top-0 h-[520px] [mask-image:radial-gradient(70%_70%_at_50%_0%,black,transparent)]"
-      />
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 pt-16 pb-20 lg:grid-cols-2 lg:pt-24">
+      {/* living-mosaic background — client canvas, container-sized, pauses off-screen */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+        <HeroMosaic />
+        <div className="absolute inset-0 bg-[radial-gradient(125%_115%_at_12%_38%,rgba(10,11,10,0.94),rgba(10,11,10,0.62)_42%,rgba(10,11,10,0.22)_72%,transparent)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#0a0b0a]" />
+      </div>
+      <div className="glow pointer-events-none absolute inset-x-0 top-0 z-[1] h-[520px]" />
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 pt-16 pb-20 lg:grid-cols-2 lg:pt-24">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-3 py-1.5 font-mono text-[11px] tracking-wide text-lime">
             <span className="h-1.5 w-1.5 rounded-full bg-lime" />
