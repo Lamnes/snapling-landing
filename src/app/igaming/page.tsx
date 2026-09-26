@@ -149,7 +149,7 @@ function Hero() {
             </a>
           </div>
           <p className="mt-8 font-mono text-xs text-faint">
-            <span className="text-lime">→</span> snapling.t(&quot;win.gamble&quot;, &quot;de&quot;) · &quot;Spielen&quot;
+            <span className="text-lime">→</span> snapling.t(&quot;win.gamble&quot;, &quot;de&quot;) · &quot;Risiko&quot;
           </p>
         </div>
 
@@ -170,7 +170,7 @@ function Hero() {
 }
 
 /** The slot WIN screen where "Gamble" is a double-or-nothing button — the
-    visual context that makes German "Spielen" right and "Glücksspiel" wrong. */
+    visual context that makes German "Risiko" right and "Glücksspiel" wrong. */
 function WinScreen() {
   return (
     <div
@@ -205,7 +205,7 @@ function WinScreen() {
           </div>
         </div>
         <p className="mt-3 text-center font-mono text-[11px] text-lime">
-          &quot;Gamble&quot; → &quot;Spielen&quot; · usedContext: true
+          &quot;Gamble&quot; → &quot;Risiko&quot; · usedContext: true
         </p>
       </div>
     </div>
@@ -378,13 +378,14 @@ function ContextProof() {
             </div>
             <div className="text-center">
               <p className="font-mono text-[11px] text-faint">resolved</p>
-              <p className="mt-1 text-2xl font-semibold">Spielen</p>
-              <p className="text-sm text-lime">the action ✓</p>
+              <p className="mt-1 text-2xl font-semibold">Risiko</p>
+              <p className="text-sm text-lime">the slot term ✓</p>
             </div>
           </div>
           <p className="mt-5 text-sm leading-relaxed text-white/80">
             The model sees <span className="font-semibold">Collect</span> next to it on a WIN screen
-            — so it translates the action, and steers clear of the regulated term.
+            — so it uses the label German slots put on double-or-nothing, and steers clear of the
+            regulated term.
           </p>
           <p className="mt-5 font-mono text-xs text-lime">usedContext: true</p>
         </div>
