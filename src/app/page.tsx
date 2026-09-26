@@ -5,7 +5,7 @@ import HeroMosaic from "@/components/HeroMosaic";
 import { Frame, GameUI, StoreCreative, BattleButton, LqaShot } from "@/components/Mocks";
 import VoiceSample from "@/components/VoiceSample";
 import DemoForm from "@/components/DemoForm";
-import { softwareApplicationJsonLd, faqJsonLd, faqs, CTA } from "@/lib/seo";
+import { softwareApplicationJsonLd, faqJsonLd, faqs, CTA, contactEmail } from "@/lib/seo";
 
 function JsonLd({ data }: { data: object }) {
   return (
@@ -655,14 +655,18 @@ function Footer() {
           <p className="font-mono text-[11px] tracking-widest text-faint">CONTACT</p>
           <ul className="mt-4 space-y-2 text-sm text-muted">
             <li><a href="https://t.me/snapling" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Telegram — @snapling</a></li>
-            <li><a href="mailto:hello@snapling.io" className="transition-colors hover:text-white">hello@snapling.io</a></li>
+            <li><a href={`mailto:${contactEmail}`} className="transition-colors hover:text-white">{contactEmail}</a></li>
             <li><a href="#contact" className="text-lime hover:underline">{CTA} →</a></li>
           </ul>
         </div>
       </div>
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-6 py-5 text-xs text-faint">
-          <span>© 2026 Snapling. All rights reserved.</span>
+          <span className="flex flex-wrap gap-4">
+            <span>© 2026 Snapling. All rights reserved.</span>
+            <a href="/privacy" className="transition-colors hover:text-white">Privacy</a>
+            <a href="/terms" className="transition-colors hover:text-white">Terms</a>
+          </span>
           <span className="font-mono">AI game localization · Unity · Unreal · Flutter</span>
         </div>
       </div>

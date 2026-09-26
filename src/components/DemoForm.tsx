@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CTA } from "@/lib/seo";
+import { CTA, contactEmail } from "@/lib/seo";
 
 /**
  * Pilot application form for the final CTA. Posts to /api/lead, which emails
@@ -34,7 +34,7 @@ export default function DemoForm() {
     const body = encodeURIComponent(
       `Email: ${email}\n\n${note || "I'd like to apply for the closed pilot. I can share a build / assets."}`
     );
-    window.location.href = `mailto:hello@snapling.io?subject=${encodeURIComponent(
+    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(
       "Snapling — pilot application"
     )}&body=${body}`;
     setState("mailto");
@@ -55,8 +55,8 @@ export default function DemoForm() {
         <p className="font-semibold text-lime">Almost there — send the email that just opened.</p>
         <p className="mt-1 text-sm text-muted">
           If no email app opened, write to{" "}
-          <a href="mailto:hello@snapling.io" className="text-lime hover:underline">
-            hello@snapling.io
+          <a href={`mailto:${contactEmail}`} className="text-lime hover:underline">
+            {contactEmail}
           </a>{" "}
           from {email}.
         </p>

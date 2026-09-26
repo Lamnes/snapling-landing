@@ -1,6 +1,16 @@
-// Central SEO constants. Replace `siteUrl` with the real domain when live.
-export const siteUrl = "https://snapling.com";
+// Central SEO constants.
+//
+// The public origin for canonical / OG / sitemap: NEXT_PUBLIC_SITE_URL once the
+// domain is chosen; until then the Railway domain the site is actually served
+// from, so these never point at a domain we don't own. (Read at build time.)
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.RAILWAY_PUBLIC_DOMAIN ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}` : "https://snapling.dev")
+).replace(/\/+$/, "");
 export const siteName = "Snapling";
+
+// One contact address everywhere (footer, form fallback).
+export const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@snapling.io";
 
 // One name for one action, everywhere on the page (header, hero, pricing, CTA,
 // footer). "Apply" reads as selection, not a sale — we're in closed pilot.
