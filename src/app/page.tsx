@@ -282,7 +282,7 @@ function ContextDemo() {
             <span className="rounded-lg border border-line px-3 py-1.5 text-white/80">🔋 Battery?</span>
             <span className="rounded-lg border border-line px-3 py-1.5 text-white/80">💳 Payment?</span>
           </div>
-          <p className="mt-5 font-mono text-xs text-red-400">→ 33% chance of shipping the wrong word</p>
+          <p className="mt-5 font-mono text-xs text-red-400">→ the tool has to guess, and ships whichever it picks</p>
         </div>
 
         {/* With context */}
@@ -292,13 +292,13 @@ function ContextDemo() {
             <BattleButton />
             <div className="text-center">
               <p className="font-mono text-[11px] text-faint">resolved</p>
-              <p className="mt-1 text-2xl" style={{ fontFamily: "'Yu Gothic','Noto Sans JP','Meiryo',sans-serif" }}>攻撃</p>
-              <p className="text-sm text-lime">Attack ✓</p>
+              <p className="mt-1 text-2xl" style={{ fontFamily: "'Yu Gothic','Noto Sans JP','Meiryo',sans-serif" }}>突撃</p>
+              <p className="text-sm text-lime">Charge (assault) ✓</p>
             </div>
           </div>
           <p className="mt-5 text-sm text-white/80">
             It&apos;s a battle action — the model sees the sword and the enemy, and translates
-            &quot;Charge&quot; as <span className="font-semibold">attack</span>.
+            &quot;Charge&quot; as a <span className="font-semibold">battle charge</span>, not a battery or a payment.
           </p>
         </div>
       </div>
@@ -406,7 +406,7 @@ function HowItWorks() {
 
 function Why() {
   const items = [
-    [<IconLayers key="a" />, "All-in-one: text, voice, creatives, video", "One engine for the whole game — not just strings."],
+    [<IconLayers key="a" />, "One engine: text, voice and creatives — video next", "The whole game, not just strings."],
     [<IconCode key="b" />, "Native SDKs for Unity, Unreal & Flutter", "Plus a web SDK — the same asset-key contract everywhere."],
     [<IconMic key="c" />, "Automated voiceover — no studios", "Re-voice dialogue in any language, without actors or booking time."],
     [<IconKey key="d" />, "Key-based asset localization", "The native model for games — fetch text and audio by asset key."],
@@ -541,7 +541,7 @@ function Pricing() {
           >
             {t.highlight && (
               <span className="absolute right-5 top-6 rounded bg-lime px-2 py-0.5 font-mono text-[10px] tracking-wide text-black">
-                MOST POPULAR
+                RECOMMENDED
               </span>
             )}
             <h3 className="text-lg font-semibold">{t.name}</h3>
@@ -648,12 +648,13 @@ function Footer() {
             <li><a href="#lqa" className="transition-colors hover:text-white">Automated LQA</a></li>
             <li><a href="#modules" className="transition-colors hover:text-white">Video localization (soon)</a></li>
             <li><a href="#pricing" className="transition-colors hover:text-white">Pricing</a></li>
+            <li><a href="/igaming" className="transition-colors hover:text-white">For iGaming</a></li>
           </ul>
         </div>
         <div>
           <p className="font-mono text-[11px] tracking-widest text-faint">CONTACT</p>
           <ul className="mt-4 space-y-2 text-sm text-muted">
-            <li>Telegram — @snapling</li>
+            <li><a href="https://t.me/snapling" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Telegram — @snapling</a></li>
             <li><a href="mailto:hello@snapling.io" className="transition-colors hover:text-white">hello@snapling.io</a></li>
             <li><a href="#contact" className="text-lime hover:underline">{CTA} →</a></li>
           </ul>

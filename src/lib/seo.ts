@@ -34,7 +34,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "How does context-aware translation work?",
-    a: "Snapling can see a screenshot of where each UI string appears on screen and translates with that visual context. So an ambiguous word like \"Charge\" on a battle button becomes \"attack\", not \"battery\" or \"payment\" — the model translates with eyes, not blind.",
+    a: "Snapling can see a screenshot of where each UI string appears on screen and translates with that visual context. So an ambiguous word like \"Charge\" on a battle button becomes a battle charge, not \"battery\" or \"payment\" — the model translates with eyes, not blind.",
   },
   {
     q: "Does Snapling check the localized build for bugs?",

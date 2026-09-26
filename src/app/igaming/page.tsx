@@ -689,7 +689,7 @@ function PricingStrip() {
           >
             {t.highlight && (
               <span className="absolute right-5 top-6 rounded bg-lime px-2 py-0.5 font-mono text-[10px] tracking-wide text-black">
-                MOST POPULAR
+                RECOMMENDED
               </span>
             )}
             <h3 className="text-lg font-semibold">{t.name}</h3>
@@ -786,7 +786,7 @@ function Footer() {
         <div>
           <p className="font-mono text-[11px] tracking-widest text-faint">CONTACT</p>
           <ul className="mt-4 space-y-2 text-sm text-muted">
-            <li>Telegram — @snapling</li>
+            <li><a href="https://t.me/snapling" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Telegram — @snapling</a></li>
             <li><a href="mailto:hello@snapling.io" className="transition-colors hover:text-white">hello@snapling.io</a></li>
             <li><a href="#contact" className="text-lime hover:underline">{CTA} →</a></li>
           </ul>

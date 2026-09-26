@@ -4,37 +4,61 @@ import { useState } from "react";
 import { CTA } from "@/lib/seo";
 
 /**
- * Pilot application form for the final CTA. No backend on the marketing site —
- * on submit it opens a prefilled email to hello@snapling.io and shows a thanks
- * state. Swap the handler for a real endpoint when one exists.
+ * Pilot application form for the final CTA. Posts to /api/lead, which emails
+ * the team when delivery is configured. If it isn't (or the request fails),
+ * the form opens a prefilled email instead and says so plainly — it never
+ * shows "thanks" for an application that went nowhere.
  */
 export default function DemoForm() {
   const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
-  const [sent, setSent] = useState(false);
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "mailto">("idle");
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    if (!email.trim() || state === "sending") return;
+    setState("sending");
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, note, page: window.location.pathname }),
+      });
+      if (res.ok) {
+        setState("sent");
+        return;
+      }
+    } catch {
+      // network error — fall back to email below
+    }
     const body = encodeURIComponent(
       `Email: ${email}\n\n${note || "I'd like to apply for the closed pilot. I can share a build / assets."}`
     );
     window.location.href = `mailto:hello@snapling.io?subject=${encodeURIComponent(
       "Snapling — pilot application"
     )}&body=${body}`;
-    setSent(true);
+    setState("mailto");
   };
 
-  if (sent) {
+  if (state === "sent") {
     return (
       <div className="mx-auto mt-8 max-w-md rounded-2xl border border-lime/40 bg-lime/10 px-6 py-5 text-center">
-        <p className="font-semibold text-lime">Thanks — your email client is opening.</p>
+        <p className="font-semibold text-lime">Thanks — your application is in.</p>
+        <p className="mt-1 text-sm text-muted">We&apos;ll reply to {email}.</p>
+      </div>
+    );
+  }
+
+  if (state === "mailto") {
+    return (
+      <div className="mx-auto mt-8 max-w-md rounded-2xl border border-lime/40 bg-lime/10 px-6 py-5 text-center">
+        <p className="font-semibold text-lime">Almost there — send the email that just opened.</p>
         <p className="mt-1 text-sm text-muted">
-          Or write us directly at{" "}
+          If no email app opened, write to{" "}
           <a href="mailto:hello@snapling.io" className="text-lime hover:underline">
             hello@snapling.io
-          </a>
-          .
+          </a>{" "}
+          from {email}.
         </p>
       </div>
     );
@@ -54,7 +78,8 @@ export default function DemoForm() {
         />
         <button
           type="submit"
-          className="rounded-lg bg-lime px-5 py-3 font-semibold text-black transition hover:bg-lime-dim active:scale-[0.98]"
+          disabled={state === "sending"}
+          className="rounded-lg bg-lime px-5 py-3 font-semibold text-black transition hover:bg-lime-dim active:scale-[0.98] disabled:opacity-60"
         >
           {CTA} →
         </button>
