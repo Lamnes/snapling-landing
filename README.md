@@ -1,9 +1,10 @@
 # Snapling — landing
 
 Marketing landing for Snapling (AI game localization). Next.js 16 (App Router) +
-Tailwind v4. Static pages plus one API route: the pilot form posts to
+Tailwind v4. Static pages plus two API routes: the pilot form posts to
 `/api/lead`, which emails the application through Resend (falls back to
-`mailto:` when that isn't configured).
+`mailto:` when that isn't configured); the estimator's site scan is
+`/api/estimate`.
 
 Standalone copy of the landing, extracted for independent deployment on Railway.
 
@@ -14,6 +15,7 @@ npm install
 npm run dev      # http://localhost:3000
 npm run build    # production build
 npm run start    # serve the build on $PORT (default 3000)
+npm test         # estimator rules (node:test; Node ≥ 22.6 for --experimental-strip-types)
 ```
 
 Node ≥ 20.9 (see `.nvmrc` → 22).
@@ -62,6 +64,15 @@ DNS CNAME at the shown target.
 - `src/app/privacy`, `src/app/terms` — pilot-stage Privacy Policy and Terms
   (drafts without company details; update the date when you edit them).
 - `src/app/api/lead/route.ts` — pilot form endpoint.
+- `src/app/estimate` + `src/components/Estimator.tsx` — word count & plan
+  estimate. Localization files are parsed in the browser (`src/lib/extract.ts`);
+  a site is read by `/api/estimate` (`src/lib/crawl.ts`: ≤ 25 pages, 40 s)
+  through `src/lib/safe-fetch.ts` (public addresses only, checked at connect
+  time and on every redirect). Words (`src/lib/wordcount.ts`) and plan choice
+  (`src/lib/estimate.ts`) mirror the platform's `WordCounter` / `PlanAdvisor` —
+  change them together, and keep the tiers in step with the Pricing section.
+  Scan limits are in memory (single instance): 10 per IP per hour (`X-Real-IP`,
+  else the first `X-Forwarded-For`), 300 per hour overall, 2 at a time.
 - `src/app/layout.tsx` — fonts + metadata; `src/lib/seo.ts` — site URL,
   contact email, JSON-LD + FAQ.
 - `src/components/` — `Header`, `LegalPage`, `BeforeAfter`, `Mocks`

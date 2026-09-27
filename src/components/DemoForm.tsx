@@ -8,10 +8,11 @@ import { CTA, contactEmail } from "@/lib/seo";
  * the team when delivery is configured. If it isn't (or the request fails),
  * the form opens a prefilled email instead and says so plainly — it never
  * shows "thanks" for an application that went nowhere.
+ * `initialNote` prefills the note (the estimator passes its result).
  */
-export default function DemoForm() {
+export default function DemoForm({ initialNote = "" }: { initialNote?: string }) {
   const [email, setEmail] = useState("");
-  const [note, setNote] = useState("");
+  const [note, setNote] = useState(initialNote);
   const [state, setState] = useState<"idle" | "sending" | "sent" | "mailto">("idle");
 
   const submit = async (e: React.FormEvent) => {

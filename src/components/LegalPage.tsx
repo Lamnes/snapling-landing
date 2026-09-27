@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Header from "@/components/Header";
 import { contactEmail } from "@/lib/seo";
 
@@ -41,9 +42,9 @@ export default function LegalPage({
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-6 py-5 text-xs text-faint">
           <span>© 2026 Snapling. All rights reserved.</span>
           <span className="flex gap-4">
-            <a href="/" className="transition-colors hover:text-white">Home</a>
-            <a href="/privacy" className="transition-colors hover:text-white">Privacy</a>
-            <a href="/terms" className="transition-colors hover:text-white">Terms</a>
+            <Link href="/" className="transition-colors hover:text-white">Home</Link>
+            <Link href="/privacy" className="transition-colors hover:text-white">Privacy</Link>
+            <Link href="/terms" className="transition-colors hover:text-white">Terms</Link>
           </span>
         </div>
       </footer>

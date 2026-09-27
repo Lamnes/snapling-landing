@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Header from "@/components/Header";
 import { Logo } from "@/components/Header";
 import BeforeAfter from "@/components/BeforeAfter";
@@ -467,6 +468,7 @@ function WhoFor() {
 /* ---------------- Pricing ---------------- */
 
 function Pricing() {
+  // Quotas match src/lib/estimate.ts (the estimator) and the platform's plans.
   const tiers = [
     {
       name: "Indie",
@@ -571,6 +573,11 @@ function Pricing() {
           </div>
         ))}
       </div>
+      <p className="mt-6 text-center">
+        <Link href="/estimate" className="font-semibold text-lime transition-colors hover:text-lime-dim">
+          Not sure how many words your game has? Count them →
+        </Link>
+      </p>
       <p className="mt-4 text-center text-xs text-faint">
         Add-ons (indicative): +$4 / extra voiceover minute · +$29 / extra language / mo · +$79 / 10
         store creatives · +$49 / extra game / mo. Final add-on pricing is set at launch.

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Header from "@/components/Header";
 import type { NavItem } from "@/components/Header";
 import { Logo } from "@/components/Header";
@@ -703,13 +704,16 @@ function PricingStrip() {
           </div>
         ))}
       </div>
-      <p className="mt-6 text-center">
-        <a
-          href="/#pricing"
+      <p className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3 text-center">
+        <Link
+          href="/estimate?source=site"
           className="font-semibold text-lime transition-colors hover:text-lime-dim"
         >
+          Count the words on your site →
+        </Link>
+        <Link href="/#pricing" className="font-semibold text-white/80 transition-colors hover:text-white">
           See full quotas on the main page →
-        </a>
+        </Link>
       </p>
     </Section>
   );
@@ -781,7 +785,7 @@ function Footer() {
             <li><a href="#context" className="transition-colors hover:text-white">Visual context</a></li>
             <li><a href="#lqa" className="transition-colors hover:text-white">Automated LQA</a></li>
             <li><a href="#pricing" className="transition-colors hover:text-white">Pricing</a></li>
-            <li><a href="/" className="transition-colors hover:text-white">Snapling for game studios</a></li>
+            <li><Link href="/" className="transition-colors hover:text-white">Snapling for game studios</Link></li>
           </ul>
         </div>
         <div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "@/components/Header";
 
 /* Branded 404, styled like an Auto-LQA defect report — the product's own
@@ -24,12 +25,12 @@ export default function NotFound() {
         automated LQA reports a missing screen. Head back to the start.
       </p>
 
-      <a
+      <Link
         href="/"
         className="mt-8 rounded-lg bg-lime px-5 py-3 font-semibold text-black transition hover:bg-lime-dim active:scale-[0.98]"
       >
         ← Back to Snapling
-      </a>
+      </Link>
 
       <div className="mt-14 opacity-60">
         <Logo />

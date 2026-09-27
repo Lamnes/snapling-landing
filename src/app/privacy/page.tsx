@@ -35,6 +35,12 @@ export default function PrivacyPage() {
           the form can&apos;t send, it opens your own email app instead — then it is an ordinary
           email to us.
         </li>
+        <li>
+          <strong>Word count estimator.</strong> Localization files you count are read in your
+          browser and not uploaded. A site address you enter is sent to our server, which reads up
+          to 25 public pages of that site to count the words; we don&apos;t keep the address or the
+          result.
+        </li>
       </ul>
 
       <h2>The Snapling service (pilot)</h2>
