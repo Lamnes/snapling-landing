@@ -18,17 +18,17 @@ export const CTA = "Apply for a pilot";
 
 export const title = "Snapling — AI Game Localization: Text, Voice & Creatives";
 export const description =
-  "Localization that sees your game: every string translated with a screenshot of where it appears, every localized screen checked for overflow, truncation and untranslated text. Text, voice and store creatives via native SDKs for Unity, Unreal and Flutter.";
+  "Text, voice and store creatives for your game in one SDK for Unity, Unreal and Flutter. Every string is translated with the screen it appears on, and every localized screen is checked for overflow, truncation and untranslated text.";
 
-export const ogTitle = "Snapling — Localization that sees your game";
+export const ogTitle = "Snapling — Text, voice and store creatives for your game, one SDK";
 export const ogDescription =
-  "Context-aware game translation + automated LQA. Every string translated with the screen it lives on, every localized screen verified. Native SDKs for Unity, Unreal, Flutter.";
+  "Game localization in one engine: UI text, voiceover and store creatives by asset key, translated with screen context and verified by automated LQA. Native SDKs for Unity, Unreal, Flutter.";
 
 // FAQ — used both for the on-page section and the FAQPage JSON-LD.
 export const faqs: { q: string; a: string }[] = [
   {
     q: "Can Snapling localize game voiceover automatically?",
-    a: "Yes. Snapling translates and re-voices dialogue and voice prompts into any language with a consistent voice, delivered by asset key through native SDKs — no dubbing studio required.",
+    a: "Yes. Snapling translates and re-voices dialogue and voice prompts with one consistent voice per character, delivered by asset key through native SDKs — no dubbing studio required. The voice languages are listed under Languages; each one passed a speak-and-transcribe-back check.",
   },
   {
     q: "Which engines and platforms do you support?",
@@ -36,7 +36,15 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "Will my brand and game names stay intact?",
-    a: "Yes. Brand names and in-game titles are recognized and locked, so they are never translated or altered during localization.",
+    a: "Yes, on every plan. Brand names and in-game titles are recognized and locked — and you can add your own list — so they are never translated or altered during localization.",
+  },
+  {
+    q: "Does my game need to be online?",
+    a: "Only to fetch updates. The native SDKs keep text and audio on the device after the first load, so the game keeps working offline, and a missing translation shows your fallback text instead of an empty label.",
+  },
+  {
+    q: "Can I export everything and leave?",
+    a: "Yes. Every language is available as JSON (asset key → text) and every voice line as an audio file by key — your localization stays yours.",
   },
   {
     q: "How does store creative localization work?",
@@ -61,7 +69,7 @@ export function softwareApplicationJsonLd() {
     applicationSubCategory: "Game Localization Software",
     operatingSystem: "Web, Unity, Unreal, Flutter",
     description:
-      "AI localization for games: translate UI, voiceover, store creatives, and trailers into any language while preserving brand and design. Context-aware translation and automated LQA. Native SDKs for Unity, Unreal, and Flutter.",
+      "AI localization for games: UI text, voiceover and store creatives, with brand names and design preserved. Context-aware translation and automated LQA. Native SDKs for Unity, Unreal, and Flutter.",
     url: `${siteUrl}/`,
     offers: { "@type": "Offer", availability: "https://schema.org/PreOrder" },
     publisher: {

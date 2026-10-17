@@ -5,6 +5,7 @@ import type { NavItem } from "@/components/Header";
 import { Logo } from "@/components/Header";
 import { Frame } from "@/components/Mocks";
 import DemoForm from "@/components/DemoForm";
+import PilotSteps from "@/components/PilotSteps";
 import DemoVideo from "@/components/DemoVideo";
 import HeroMosaic from "@/components/HeroMosaic";
 import { siteName, CTA, contactEmail } from "@/lib/seo";
@@ -44,7 +45,7 @@ const igamingFaqs: { q: string; a: string }[] = [
   },
   {
     q: "Which markets and languages do you cover?",
-    a: "Any language the pipeline supports. The live demo ships one English casino into German, Spanish, Portuguese, French and Turkish in a single run. Adding a market is a pipeline run against your existing keys, not a new localization project.",
+    a: "The languages on the checked list on our main page (Languages) — text and voice are listed separately. The live demo ships one English casino into German, Spanish, Portuguese, French and Turkish in a single run. Adding a market is a pipeline run against your existing keys, not a new localization project.",
   },
   {
     q: "Do you support web casinos or game engines?",
@@ -56,7 +57,7 @@ const igamingFaqs: { q: string; a: string }[] = [
   },
   {
     q: "How does the pilot work?",
-    a: "We're onboarding a small group of teams for closed pilots. Bring a slice of your casino — a lobby, one game, a set of screens. We localize it with you into your markets and hand back the LQA report. Pilot participants lock in 50% off launch pricing for 12 months.",
+    a: "Tell us which markets you're entering and what you run on; a 20-minute call scopes it. Then, under NDA, you share a slice — a lobby, one game, a set of screens — and we localize it into your markets and hand back the LQA report. Pilot participants lock in 50% off launch pricing for 12 months.",
   },
 ];
 
@@ -385,8 +386,8 @@ function ContextProof() {
           </div>
           <p className="mt-5 text-sm leading-relaxed text-white/80">
             The model sees <span className="font-semibold">Collect</span> next to it on a WIN screen
-            — so it uses the label German slots put on double-or-nothing, and steers clear of the
-            regulated term.
+            — so it uses the button term German players expect on double-or-nothing, and keeps
+            &quot;Glücksspiel&quot; for the legal text where it belongs.
           </p>
           <p className="mt-5 font-mono text-xs text-lime">usedContext: true</p>
         </div>
@@ -600,19 +601,18 @@ function Pitch() {
       <Eyebrow>The one-minute version</Eyebrow>
       <H2>The whole story, narrated</H2>
       <Lead>
-        Problem, live localization and the compliance gate in 65 seconds — the
-        same cut we show investors and partners. Sound on.
+        Problem, live localization and the compliance gate in 65 seconds. Sound on.
       </Lead>
       <div className="mt-12 overflow-hidden rounded-2xl border border-line bg-panel transition-colors hover:border-line-strong">
         <video
           controls
           playsInline
           preload="metadata"
-          poster="/video/investor-pitch-poster.jpg"
+          poster="/video/snapling-igaming-overview-poster.jpg"
           className="block h-auto w-full"
           aria-label="Snapling for iGaming — 65 second narrated overview"
         >
-          <source src="/video/investor-pitch.mp4" type="video/mp4" />
+          <source src="/video/snapling-igaming-overview.mp4" type="video/mp4" />
         </video>
       </div>
       <p className="mt-4 font-mono text-[11px] tracking-widest text-faint">
@@ -632,7 +632,7 @@ function WhoFor() {
     ],
     [
       "Aggregators & platforms",
-      "A catalog of brands through one pipeline. Glossaries lock every skin's names and titles; each market ships from the same source keys, not a fresh project.",
+      "A catalog of brands through one pipeline. Brand words lock every skin's names and titles; each market ships from the same source keys, not a fresh project.",
     ],
     [
       "Slot studios",
@@ -655,64 +655,38 @@ function WhoFor() {
   );
 }
 
-/* ---------------- Pricing strip (mirrors the main page 1:1) ---------------- */
+/* ---------------- Pricing ---------------- */
 
+// Operators aren't "solo devs": no game-studio tiers here — priced per markets
+// and brands, in a conversation. The estimator gives them the volume first.
 function PricingStrip() {
-  const tiers = [
-    { name: "Indie", price: "$99", unit: "/mo", blurb: "For solo devs & small teams." },
-    { name: "Studio", price: "$499", unit: "/mo", blurb: "For growing studios.", highlight: true },
-    { name: "Publisher", price: "Custom", unit: "", blurb: "For publishers & large studios." },
+  const drivers = [
+    ["Markets", "How many licensed markets and languages you ship."],
+    ["Brands", "One casino, a multi-brand group, or a platform with skins."],
+    ["Volume", "Words, screens and creatives per month — count them below."],
   ];
   return (
     <Section id="pricing">
       <Eyebrow>Pricing</Eyebrow>
-      <H2>Same engine, same pricing</H2>
+      <H2>Pricing by markets and brands</H2>
       <Lead>
-        iGaming runs on the same plans as the main product — no vertical markup. Full quotas, SDKs
-        and add-ons are spelled out on the main page.
+        Every operator&apos;s footprint is different, so we price it with you — no vertical markup over
+        the engine itself. Pilot participants lock in 50% off launch pricing for 12 months.
       </Lead>
-
-      <div className="mt-8 rounded-xl border border-lime/40 bg-lime/[0.06] px-5 py-3 text-center text-sm">
-        <span className="font-semibold text-lime">
-          Pilot participants lock in 50% off launch pricing for 12 months.
-        </span>{" "}
-        <span className="text-muted">The prices below take effect at launch.</span>
-      </div>
-
       <div className="mt-8 grid gap-4 md:grid-cols-3">
-        {tiers.map((t) => (
-          <div
-            key={t.name}
-            className={`relative flex flex-col rounded-2xl border p-6 transition-colors ${
-              t.highlight
-                ? "border-lime/60 bg-lime/[0.06] hover:border-lime/80"
-                : "border-line bg-panel hover:border-line-strong"
-            }`}
-          >
-            {t.highlight && (
-              <span className="absolute right-5 top-6 rounded bg-lime px-2 py-0.5 font-mono text-[10px] tracking-wide text-black">
-                RECOMMENDED
-              </span>
-            )}
-            <h3 className="text-lg font-semibold">{t.name}</h3>
-            <p className="mt-1 text-sm text-faint">{t.blurb}</p>
-            <p className="mt-4">
-              {t.price !== "Custom" && <span className="text-xs text-faint">from </span>}
-              <span className="h-display text-4xl">{t.price}</span>
-              <span className="text-sm text-faint">{t.unit}</span>
-            </p>
+        {drivers.map(([title, body]) => (
+          <div key={title} className="rounded-2xl border border-line bg-panel p-6">
+            <h3 className="text-lg font-semibold">{title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{body}</p>
           </div>
         ))}
       </div>
       <p className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3 text-center">
-        <Link
-          href="/estimate?source=site"
-          className="font-semibold text-lime transition-colors hover:text-lime-dim"
-        >
+        <a href="#contact" className="font-semibold text-lime transition-colors hover:text-lime-dim">
+          Talk to us →
+        </a>
+        <Link href="/estimate?source=site" className="font-semibold text-white/80 transition-colors hover:text-white">
           Count the words on your site →
-        </Link>
-        <Link href="/#pricing" className="font-semibold text-white/80 transition-colors hover:text-white">
-          See full quotas on the main page →
         </Link>
       </p>
     </Section>
@@ -754,11 +728,11 @@ function FinalCta() {
         <div className="relative z-10">
           <h2 className="h-display text-balance text-4xl sm:text-5xl">{CTA}</h2>
           <p className="mx-auto mt-5 max-w-lg text-muted">
-            We&apos;re onboarding a small group of teams for closed pilots. Bring a slice of your
-            casino — a lobby, one game, a set of screens. We&apos;ll localize it into your markets and
-            hand back the LQA report. Pilot participants lock in 50% off launch pricing for 12 months.
+            We&apos;re onboarding a small group of teams for closed pilots. Tell us which markets
+            you&apos;re entering and what you run on — we&apos;ll get back to you within one business day.
           </p>
-          <DemoForm />
+          <DemoForm aboutPlaceholder="White-label casino, entering DE and BR" />
+          <PilotSteps slice="a lobby, one game or a set of screens" />
         </div>
       </div>
     </Section>
@@ -815,7 +789,7 @@ function Footer() {
 
 function Section({ id, children }: { id?: string; children: React.ReactNode }) {
   return (
-    <section id={id} className="mx-auto max-w-6xl px-6 py-20">
+    <section id={id} className="mx-auto max-w-6xl px-6 py-10 md:py-14">
       {children}
     </section>
   );

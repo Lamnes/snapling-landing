@@ -2,18 +2,20 @@ import { CTA } from "@/lib/seo";
 
 export type NavItem = { label: string; href: string };
 
+// iGaming lives in the footer, not here: many game studios won't work with a
+// vendor that leads with gambling.
 const NAV: NavItem[] = [
   { label: "Product", href: "#modules" },
-  { label: "Quality", href: "#context" },
+  { label: "Context", href: "#context" },
+  { label: "LQA", href: "#lqa" },
   { label: "How it works", href: "#how" },
   { label: "Pricing", href: "#pricing" },
-  { label: "iGaming", href: "/igaming" },
 ];
 
 export function Logo({ href = "#top" }: { href?: string }) {
   return (
-    <a href={href} className="flex items-center gap-2.5">
-      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-lime font-display text-lg font-extrabold text-black">
+    <a href={href} aria-label="Snapling — home" className="flex items-center gap-2.5">
+      <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center rounded-lg bg-lime font-display text-lg font-extrabold text-black">
         S
       </span>
       <span className="text-lg font-semibold tracking-tight">Snapling</span>

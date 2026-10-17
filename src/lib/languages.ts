@@ -1,0 +1,70 @@
+// Languages we list on the site — only ones that passed the platform's check
+// (translator-saas scripts/verify_languages.py): text = translated and judged
+// back in English by a second model; voice = spoken by the provider the product
+// routes that language to (Seed-Audio, or Gemini TTS where Seed mumbles —
+// AudioSynthesisService.SEED_LANGUAGES), transcribed back, >= 80% of the
+// characters matched. Not listed after the check: voice for Armenian, Mongolian,
+// Telugu, Khmer; Burmese and Amharic entirely. Re-run and update together.
+
+export type Language = { code: string; name: string; text: boolean; voice: boolean };
+
+export const LANGUAGES_CHECKED = "October 2026";
+
+export const LANGUAGES: Language[] = [
+  { code: "en", name: "English", text: true, voice: true },
+  { code: "de", name: "German", text: true, voice: true },
+  { code: "fr", name: "French", text: true, voice: true },
+  { code: "es", name: "Spanish", text: true, voice: true },
+  { code: "it", name: "Italian", text: true, voice: true },
+  { code: "pt-BR", name: "Portuguese (Brazil)", text: true, voice: true },
+  { code: "pt-PT", name: "Portuguese (Portugal)", text: true, voice: true },
+  { code: "nl", name: "Dutch", text: true, voice: true },
+  { code: "sv", name: "Swedish", text: true, voice: true },
+  { code: "da", name: "Danish", text: true, voice: true },
+  { code: "nb", name: "Norwegian", text: true, voice: true },
+  { code: "fi", name: "Finnish", text: true, voice: true },
+  { code: "pl", name: "Polish", text: true, voice: true },
+  { code: "cs", name: "Czech", text: true, voice: true },
+  { code: "sk", name: "Slovak", text: true, voice: true },
+  { code: "hu", name: "Hungarian", text: true, voice: true },
+  { code: "ro", name: "Romanian", text: true, voice: true },
+  { code: "bg", name: "Bulgarian", text: true, voice: true },
+  { code: "el", name: "Greek", text: true, voice: true },
+  { code: "tr", name: "Turkish", text: true, voice: true },
+  { code: "ru", name: "Russian", text: true, voice: true },
+  { code: "uk", name: "Ukrainian", text: true, voice: true },
+  { code: "kk", name: "Kazakh", text: true, voice: true },
+  { code: "az", name: "Azerbaijani", text: true, voice: true },
+  { code: "ka", name: "Georgian", text: true, voice: true },
+  { code: "hy", name: "Armenian", text: true, voice: false },
+  { code: "he", name: "Hebrew", text: true, voice: true },
+  { code: "ar", name: "Arabic", text: true, voice: true },
+  { code: "fa", name: "Persian", text: true, voice: true },
+  { code: "ur", name: "Urdu", text: true, voice: true },
+  { code: "hi", name: "Hindi", text: true, voice: true },
+  { code: "bn", name: "Bengali", text: true, voice: true },
+  { code: "ta", name: "Tamil", text: true, voice: true },
+  { code: "te", name: "Telugu", text: true, voice: false },
+  { code: "mr", name: "Marathi", text: true, voice: true },
+  { code: "th", name: "Thai", text: true, voice: true },
+  { code: "vi", name: "Vietnamese", text: true, voice: true },
+  { code: "id", name: "Indonesian", text: true, voice: true },
+  { code: "ms", name: "Malay", text: true, voice: true },
+  { code: "fil", name: "Filipino", text: true, voice: true },
+  { code: "zh-CN", name: "Chinese (Simplified)", text: true, voice: true },
+  { code: "zh-TW", name: "Chinese (Traditional)", text: true, voice: true },
+  { code: "ja", name: "Japanese", text: true, voice: true },
+  { code: "ko", name: "Korean", text: true, voice: true },
+  { code: "sr", name: "Serbian", text: true, voice: true },
+  { code: "hr", name: "Croatian", text: true, voice: true },
+  { code: "sl", name: "Slovenian", text: true, voice: true },
+  { code: "lt", name: "Lithuanian", text: true, voice: true },
+  { code: "lv", name: "Latvian", text: true, voice: true },
+  { code: "et", name: "Estonian", text: true, voice: true },
+  { code: "ca", name: "Catalan", text: true, voice: true },
+  { code: "sw", name: "Swahili", text: true, voice: true },
+  { code: "af", name: "Afrikaans", text: true, voice: true },
+  { code: "uz", name: "Uzbek", text: true, voice: true },
+  { code: "mn", name: "Mongolian", text: true, voice: false },
+  { code: "km", name: "Khmer", text: true, voice: false },
+];

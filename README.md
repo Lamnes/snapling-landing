@@ -63,7 +63,14 @@ DNS CNAME at the shown target.
 - `src/app/igaming/page.tsx` — the iGaming landing.
 - `src/app/privacy`, `src/app/terms` — pilot-stage Privacy Policy and Terms
   (drafts without company details; update the date when you edit them).
-- `src/app/api/lead/route.ts` — pilot form endpoint.
+- `src/app/api/lead/route.ts` — pilot form endpoint (name, email or Telegram,
+  about the game, optional engine). `PilotSteps` shows what happens next.
+- `src/lib/languages.ts` — the language list in the Languages section: only
+  languages that passed the platform's check (`translator-saas
+  scripts/verify_languages.py`: text read back by a second model, voice spoken
+  and transcribed back). Re-run the script and update the list together.
+- Pricing on the home page mirrors the platform's plans (`billing/Plan.java`) and
+  `src/lib/estimate.ts`; the Steam figure in "The problem" is monthly data — refresh it.
 - `src/app/estimate` + `src/components/Estimator.tsx` — word count & plan
   estimate. Localization files are parsed in the browser (`src/lib/extract.ts`);
   a site is read by `/api/estimate` (`src/lib/crawl.ts`: ≤ 25 pages, 40 s)

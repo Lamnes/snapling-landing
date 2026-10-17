@@ -30,8 +30,9 @@ export default function PrivacyPage() {
         </li>
         <li>
           <strong>Pilot applications.</strong>{" "}
-          When you apply, we receive your email address, the
-          note you write, and which page you applied from. It is delivered to our team by email. If
+          When you apply, we receive your name, the email address or
+          Telegram username you give, what you write about your game, the engine if you pick one,
+          and which page you applied from. It is delivered to our team by email. If
           the form can&apos;t send, it opens your own email app instead — then it is an ordinary
           email to us.
         </li>
