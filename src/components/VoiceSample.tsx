@@ -58,7 +58,8 @@ export default function VoiceSample() {
     <div className="rounded-xl border border-line bg-panel/60 p-4">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[10px] tracking-widest text-faint">VOICE LOCALIZATION</span>
-        <span className="font-mono text-[10px] tracking-wide text-lime">same voice, new language</span>
+        {/* Not "same voice": that reads as cloning the actor, and the product picks a preset voice. */}
+        <span className="font-mono text-[10px] tracking-wide text-lime">one voice per character, every language</span>
       </div>
 
       {/* Language switcher */}

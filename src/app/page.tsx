@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Header from "@/components/Header";
 import { Logo } from "@/components/Header";
 import BeforeAfter from "@/components/BeforeAfter";
@@ -5,7 +6,10 @@ import HeroMosaic from "@/components/HeroMosaic";
 import { Frame, GameUI, StoreCreative, BattleButton, LqaShot } from "@/components/Mocks";
 import VoiceSample from "@/components/VoiceSample";
 import DemoForm from "@/components/DemoForm";
-import { softwareApplicationJsonLd, faqJsonLd, faqs, CTA } from "@/lib/seo";
+import PilotSteps from "@/components/PilotSteps";
+import Languages from "@/components/Languages";
+import { LANGUAGES } from "@/lib/languages";
+import { softwareApplicationJsonLd, faqJsonLd, faqs, CTA, contactEmail } from "@/lib/seo";
 
 function JsonLd({ data }: { data: object }) {
   return (
@@ -34,6 +38,7 @@ export default function Home() {
         <Why />
         <WhoFor />
         <Pricing />
+        <LanguagesSection />
         <Faq />
         <FinalCta />
       </main>
@@ -63,12 +68,12 @@ function Hero() {
             CLOSED PILOT — ONBOARDING NOW
           </span>
           <h1 className="h-display mt-6 text-balance text-5xl sm:text-6xl">
-            Localization that <span className="text-lime">sees your game</span>.
+            Text, voice and store creatives for your game — <span className="text-lime">one SDK</span>.
           </h1>
           <p className="mt-6 max-w-md text-pretty text-lg leading-relaxed text-muted">
-            Snapling translates every string with a screenshot of where it appears — then checks
-            every localized screen for overflow, truncation and untranslated text. Text, voice and
-            store creatives in one engine, via native SDKs for Unity, Unreal and Flutter.
+            UI strings, character voiceover and store art, localized in one engine and delivered by
+            asset key to Unity, Unreal and Flutter. Every string is translated with the screen it
+            appears on, and every localized screen is checked before it ships.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#contact" className="rounded-lg bg-lime px-5 py-3 font-semibold text-black transition hover:bg-lime-dim active:scale-[0.98]">
@@ -137,11 +142,12 @@ function Problem() {
 
       {/* Third-party, checkable numbers — not our own estimates. */}
       <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
+        {/* Refresh monthly: English 34.20%, Simplified Chinese 31.39% in September 2026. */}
         <SourcedStat
-          value="32%"
-          body="of Steam users have English as their main language — Mandarin is right behind, at 32.2%."
-          source="Lokalise / Steam data"
-          href="https://lokalise.com/blog/game-localization/"
+          value="~66%"
+          body="of Steam users don't use English as their main language — Simplified Chinese is nearly as common, 31.4% against 34.2%."
+          source="Steam Hardware & Software Survey, Sep 2026"
+          href="https://store.steampowered.com/hwsurvey/"
         />
         <SourcedStat
           value="76%"
@@ -200,8 +206,8 @@ function Modules() {
       <Eyebrow>The platform</Eyebrow>
       <H2>Localize your whole game</H2>
       <Lead>
-        Text, voice, creatives and video — one game localization engine, end to end, with your brand
-        and game titles kept intact.
+        Text, voice and creatives — one game localization engine, end to end, with your brand and
+        game titles kept intact. Video is next.
       </Lead>
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (
@@ -241,13 +247,18 @@ function Modules() {
 function StoreDemo() {
   return (
     <Section>
-      <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-line-strong">
-        <BeforeAfter
-          leftLabel="EN — SOURCE"
-          rightLabel="JA — REDRAWN"
-          left={<StoreCreative lang="en" />}
-          right={<StoreCreative lang="ja" />}
-        />
+      {/* Side by side, not a slider: the banner is left-aligned, so any split
+          position cut the Japanese text under the English half. */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {(["en", "ja"] as const).map((lang) => (
+          <div key={lang} className="relative overflow-hidden rounded-2xl border border-line-strong">
+            <span className={`absolute right-3 top-3 z-20 rounded-md px-2 py-1 font-mono text-[10px] tracking-wide ${
+              lang === "en" ? "bg-black/70 text-white/80" : "bg-lime/90 text-black"}`}>
+              {lang === "en" ? "EN — SOURCE" : "JA — LOCALIZED"}
+            </span>
+            <StoreCreative lang={lang} />
+          </div>
+        ))}
       </div>
       <p className="mt-4 text-center text-sm text-faint">
         Store screenshots and banners redrawn in place — the text is translated and re-rendered on
@@ -282,7 +293,7 @@ function ContextDemo() {
             <span className="rounded-lg border border-line px-3 py-1.5 text-white/80">🔋 Battery?</span>
             <span className="rounded-lg border border-line px-3 py-1.5 text-white/80">💳 Payment?</span>
           </div>
-          <p className="mt-5 font-mono text-xs text-red-400">→ 33% chance of shipping the wrong word</p>
+          <p className="mt-5 font-mono text-xs text-red-400">→ the tool has to guess, and ships whichever it picks</p>
         </div>
 
         {/* With context */}
@@ -292,13 +303,13 @@ function ContextDemo() {
             <BattleButton />
             <div className="text-center">
               <p className="font-mono text-[11px] text-faint">resolved</p>
-              <p className="mt-1 text-2xl" style={{ fontFamily: "'Yu Gothic','Noto Sans JP','Meiryo',sans-serif" }}>攻撃</p>
-              <p className="text-sm text-lime">Attack ✓</p>
+              <p className="mt-1 text-2xl" style={{ fontFamily: "'Yu Gothic','Noto Sans JP','Meiryo',sans-serif" }}>突撃</p>
+              <p className="text-sm text-lime">Charge (assault) ✓</p>
             </div>
           </div>
           <p className="mt-5 text-sm text-white/80">
-            It&apos;s a battle action — the model sees the sword and the enemy, and translates
-            &quot;Charge&quot; as <span className="font-semibold">attack</span>.
+            It&apos;s a battle action — the model sees the battle HUD and the enemy, and translates
+            &quot;Charge&quot; as a <span className="font-semibold">battle charge</span>, not a battery or a payment.
           </p>
         </div>
       </div>
@@ -367,9 +378,6 @@ function LqaDemo() {
           </p>
         </div>
       </div>
-      <p className="mt-4 text-center text-sm text-faint">
-        We don&apos;t just translate your game — we verify nothing broke.
-      </p>
     </Section>
   );
 }
@@ -381,7 +389,7 @@ function HowItWorks() {
     ["1", "Connect", "Drop in the Unity, Unreal, Flutter or web SDK — or upload your assets. No re-platforming."],
     ["2", "Translate & voice", "AI translates every string and re-voices every line for the target language."],
     ["3", "Protect the brand", "Brand names and game titles are recognized and locked — never translated, never altered."],
-    ["4", "Ships by key", "Your game fetches localized text and audio by asset key — live, in your build."],
+    ["4", "Ships by key", "Your game fetches text and audio by asset key and keeps them on the device — it works offline after the first load. Every language is also yours as JSON."],
   ];
   return (
     <Section id="how">
@@ -406,9 +414,9 @@ function HowItWorks() {
 
 function Why() {
   const items = [
-    [<IconLayers key="a" />, "All-in-one: text, voice, creatives, video", "One engine for the whole game — not just strings."],
+    [<IconLayers key="a" />, "One engine: text, voice and creatives — video next", "The whole game, not just strings."],
     [<IconCode key="b" />, "Native SDKs for Unity, Unreal & Flutter", "Plus a web SDK — the same asset-key contract everywhere."],
-    [<IconMic key="c" />, "Automated voiceover — no studios", "Re-voice dialogue in any language, without actors or booking time."],
+    [<IconMic key="c" />, "Automated voiceover — no studios", "Re-voice dialogue in every language on our voice list, without actors or booking time."],
     [<IconKey key="d" />, "Key-based asset localization", "The native model for games — fetch text and audio by asset key."],
     [<IconEye key="e" />, "Context-aware translation", "The model sees where each string appears on screen — ambiguous UI words resolve right."],
     [<IconScan key="f" />, "Automated LQA", "Every localized screenshot checked for overflow, truncation, untranslated text and broken glyphs."],
@@ -445,8 +453,8 @@ function Why() {
 function WhoFor() {
   const cards = [
     ["Indie studios", "Ship your game in five languages with voice — no dubbing studio and no localization project per language."],
-    ["Mobile developers", "Localize UI and store creatives for every market — app store localization (ASO) done in a day."],
-    ["Publishers", "Roll out localization across a portfolio — one engine for text, voice, creatives and trailers."],
+    ["Mobile developers", "Localize UI and store creatives for every market — app store localization (ASO) from the first plan."],
+    ["Publishers", "Roll out localization across a portfolio — one engine for text, voice and creatives, trailers next."],
   ];
   return (
     <Section id="who">
@@ -467,6 +475,9 @@ function WhoFor() {
 /* ---------------- Pricing ---------------- */
 
 function Pricing() {
+  // Quotas are the platform's plans (translator-saas billing/Plan.java) — and
+  // src/lib/estimate.ts, the estimator. Change all three together. Images are one
+  // counter: LQA screenshots and store creatives draw on the same quota.
   const tiers = [
     {
       name: "Indie",
@@ -474,43 +485,48 @@ function Pricing() {
       unit: "/mo",
       blurb: "For solo devs & small teams.",
       features: [
-        "1 game",
+        "1 game · 5 seats",
         "Up to 5 languages",
         "50k translated words / mo",
-        "30 min voiceover / mo — 1 voice per language",
-        "LQA: 200 screenshots / mo",
+        "30 min voiceover / mo — a voice per character",
+        "200 images / mo — LQA screenshots or store creatives",
+        "Game title & brand lock",
+        "CI-ready LQA report",
         "All SDKs (Unity, Unreal, Flutter, web)",
       ],
+      cta: CTA,
     },
     {
       name: "Studio",
       price: "$499",
       unit: "/mo",
       blurb: "For growing studios.",
+      plus: "Everything in Indie, plus:",
       features: [
-        "Up to 2 games",
+        "Up to 2 games · 20 seats",
         "Up to 15 languages",
         "300k translated words / mo",
-        "120 min voiceover / mo — pick your voices",
-        "50 localized store creatives / mo",
-        "Unlimited LQA + CI report",
-        "Brand glossary & title lock",
+        "120 min voiceover / mo",
+        "2,000 images / mo",
         "Priority support",
       ],
       highlight: true,
+      cta: CTA,
     },
     {
       name: "Publisher",
       price: "Custom",
       unit: "",
       blurb: "For publishers & large studios.",
+      plus: "Everything in Studio, plus:",
       features: [
         "Portfolio of games",
         "Unlimited languages",
-        "Volume word & voiceover quotas",
-        "All SDKs + SLA",
+        "Volume word, image & voiceover quotas",
+        "SLA",
         "Dedicated support",
       ],
+      cta: "Talk to us",
     },
   ];
   return (
@@ -541,17 +557,17 @@ function Pricing() {
           >
             {t.highlight && (
               <span className="absolute right-5 top-6 rounded bg-lime px-2 py-0.5 font-mono text-[10px] tracking-wide text-black">
-                MOST POPULAR
+                RECOMMENDED
               </span>
             )}
             <h3 className="text-lg font-semibold">{t.name}</h3>
             <p className="mt-1 text-sm text-faint">{t.blurb}</p>
             <p className="mt-4">
-              {t.price !== "Custom" && <span className="text-xs text-faint">from </span>}
               <span className="h-display text-4xl">{t.price}</span>
               <span className="text-sm text-faint">{t.unit}</span>
             </p>
-            <ul className="mt-5 flex-1 space-y-2 text-sm text-muted">
+            {t.plus && <p className="mt-5 text-sm font-semibold text-white/85">{t.plus}</p>}
+            <ul className={`${t.plus ? "mt-2" : "mt-5"} flex-1 space-y-2 text-sm text-muted`}>
               {t.features.map((f) => (
                 <li key={f} className="flex items-start gap-2">
                   <span className="mt-0.5 text-lime">✓</span> {f}
@@ -566,15 +582,40 @@ function Pricing() {
                   : "border border-line-strong text-white/90 hover:bg-white/5"
               }`}
             >
-              {CTA}
+              {t.cta}
             </a>
           </div>
         ))}
       </div>
-      <p className="mt-4 text-center text-xs text-faint">
-        Add-ons (indicative): +$4 / extra voiceover minute · +$29 / extra language / mo · +$79 / 10
-        store creatives · +$49 / extra game / mo. Final add-on pricing is set at launch.
+      <p className="mt-6 text-center">
+        <Link href="/estimate" className="font-semibold text-lime transition-colors hover:text-lime-dim">
+          Not sure how many words your game has? Count them →
+        </Link>
       </p>
+      <p className="mt-4 text-center text-xs text-faint">
+        Over the quota (indicative): $3 per 1,000 words ($2.50 on Studio) · $0.20 per image ($0.15 on
+        Studio) · $4 per voiceover minute. Final pricing is set at launch.
+      </p>
+    </Section>
+  );
+}
+
+/* ---------------- Languages ---------------- */
+
+function LanguagesSection() {
+  const text = LANGUAGES.filter((l) => l.text).length;
+  const voice = LANGUAGES.filter((l) => l.voice).length;
+  return (
+    <Section id="languages">
+      <Eyebrow>Languages</Eyebrow>
+      <H2>
+        {text} languages for text, {voice} for voice
+      </H2>
+      <Lead>
+        Not &quot;any language&quot;: each one below passed a check — text translated and read back by
+        a second model, voice spoken and transcribed back against the script.
+      </Lead>
+      <Languages />
     </Section>
   );
 }
@@ -614,11 +655,12 @@ function FinalCta() {
         <div className="relative z-10">
           <h2 className="h-display text-balance text-4xl sm:text-5xl">{CTA}</h2>
           <p className="mx-auto mt-5 max-w-lg text-muted">
-            We&apos;re onboarding a small group of studios for closed pilots. Bring your build and a few
-            assets — we&apos;ll localize a slice of it with you and hand back the LQA report. Pilot
+            We&apos;re onboarding a small group of studios for closed pilots. Tell us about your game and
+            the markets you&apos;re targeting — we&apos;ll get back to you within one business day. Pilot
             participants lock in 50% off launch pricing for 12 months.
           </p>
           <DemoForm />
+          <PilotSteps />
         </div>
       </div>
     </Section>
@@ -634,8 +676,8 @@ function Footer() {
         <div>
           <Logo />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
-            AI localization for games and apps. Translate your UI, voiceover, creatives and video for
-            any market — brand-safe and design-preserving.
+            AI game localization: UI text, voiceover and store creatives, delivered by asset key —
+            brand-safe and design-preserving.
           </p>
         </div>
         <div>
@@ -648,20 +690,29 @@ function Footer() {
             <li><a href="#lqa" className="transition-colors hover:text-white">Automated LQA</a></li>
             <li><a href="#modules" className="transition-colors hover:text-white">Video localization (soon)</a></li>
             <li><a href="#pricing" className="transition-colors hover:text-white">Pricing</a></li>
+            <li><a href="#languages" className="transition-colors hover:text-white">Languages</a></li>
           </ul>
         </div>
         <div>
-          <p className="font-mono text-[11px] tracking-widest text-faint">CONTACT</p>
+          <p className="font-mono text-[11px] tracking-widest text-faint">SOLUTIONS</p>
           <ul className="mt-4 space-y-2 text-sm text-muted">
-            <li>Telegram — @snapling</li>
-            <li><a href="mailto:hello@snapling.io" className="transition-colors hover:text-white">hello@snapling.io</a></li>
-            <li><a href="#contact" className="text-lime hover:underline">{CTA} →</a></li>
+            <li><Link href="/igaming" className="transition-colors hover:text-white">iGaming</Link></li>
+            <li><Link href="/estimate" className="transition-colors hover:text-white">Word count &amp; plan</Link></li>
+          </ul>
+          <p className="mt-8 font-mono text-[11px] tracking-widest text-faint">CONTACT</p>
+          <ul className="mt-4 space-y-2 text-sm text-muted">
+            <li><a href="https://t.me/snapling" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Telegram — @snapling</a></li>
+            <li><a href={`mailto:${contactEmail}`} className="transition-colors hover:text-white">{contactEmail}</a></li>
           </ul>
         </div>
       </div>
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-6 py-5 text-xs text-faint">
-          <span>© 2026 Snapling. All rights reserved.</span>
+          <span className="flex flex-wrap gap-4">
+            <span>© 2026 Snapling. All rights reserved.</span>
+            <a href="/privacy" className="transition-colors hover:text-white">Privacy</a>
+            <a href="/terms" className="transition-colors hover:text-white">Terms</a>
+          </span>
           <span className="font-mono">AI game localization · Unity · Unreal · Flutter</span>
         </div>
       </div>
@@ -673,7 +724,7 @@ function Footer() {
 
 function Section({ id, children }: { id?: string; children: React.ReactNode }) {
   return (
-    <section id={id} className="mx-auto max-w-6xl px-6 py-20">
+    <section id={id} className="mx-auto max-w-6xl px-6 py-10 md:py-14">
       {children}
     </section>
   );

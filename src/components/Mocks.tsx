@@ -183,8 +183,8 @@ export function StoreCreative({ lang }: { lang: Lang }) {
   const t = STORE[lang];
   return (
     <div
-      // pt-12: same reason as GameUI — clear the BeforeAfter label strip so the
-      // store badge and the "JA — REDRAWN" label don't collide.
+      // pt-12: clear the label strip so the store badge and the
+      // "JA — LOCALIZED" label don't collide.
       className="relative h-64 w-full overflow-hidden px-6 pb-6 pt-12 text-white"
       style={{ background: "linear-gradient(135deg, #2a2140 0%, #171029 50%, #0d0b12 100%)" }}
     >

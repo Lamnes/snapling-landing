@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Snapling — AI Game Localization: Text & Voice";
+export const alt = "Snapling — AI Game Localization: Text, Voice & Creatives";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -48,10 +48,10 @@ export default function OgImage() {
             AI Game Localization
           </div>
           <div style={{ color: "#CBFB60", fontSize: 82, fontWeight: 800, lineHeight: 1.04 }}>
-            Text &amp; Voice
+            Text, Voice &amp; Creatives
           </div>
           <div style={{ display: "flex", color: "#a6a6a0", fontSize: 32, marginTop: 22 }}>
-            UI, voiceover &amp; store creatives — in any language.
+            UI, voiceover &amp; store creatives — one SDK.
           </div>
         </div>
 
